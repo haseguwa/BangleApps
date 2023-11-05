@@ -2,7 +2,7 @@
   "name": "MinutesViber",
   "shortName":"MViber",
   "icon": "app.png",
-  "version":"0.01",
+  "version": "0.01",
   "description": "Tell the current time by the vibration",
   "tags": "",
   "storage": [
