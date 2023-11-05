@@ -1,1 +1,1 @@
-E.toArrayBuffer(atob("mEwwkA/4A/AH4A/AH4A/AH4A/AH4A/AH4A/AH4A/AH4A/AH4A/AHwA=="))
+require("heatshrink").decompress(atob("mEwwkA/4A/AH4A/AH4A/AH4A/AH4A/AH4A/AH4A/AH4A/AH4A/AHwA=="))
