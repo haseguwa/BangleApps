@@ -7,7 +7,7 @@ const REMAINING_INTERVAL = 300;
 const SEPARATOR_INTERVAL = 400;
 
 var currentDate = new Date();
-var hour = currentDate.getHours();
+var hour = (currentDate.getHours() - 1) % 12 + 1;
 var min = currentDate.getMinutes();
 var qmin = Math.floor(min / 15);
 var rmin = min % 15;
