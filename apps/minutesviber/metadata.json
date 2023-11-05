@@ -1,6 +1,6 @@
 { "id": "minutesviber",
   "name": "Minutes Viber",
-  "shortName":"MinutesViber",
+  "shortName":"MViber",
   "icon": "app.png",
   "version": "0.01",
   "description": "Tell the current time by the vibration",
