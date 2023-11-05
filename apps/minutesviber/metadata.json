@@ -3,7 +3,7 @@
   "shortName":"MViber",
   "icon": "app.png",
   "version": "0.02",
-  "description": "Tell the current time by the vibration",
+  "description": "Tell the current time like minutes repeater but use vibration insteard of chime.\nIt vibrates number of hours, then quarter hours and finally remaining minutes.",
   "tags": "Tools",
   "storage": [
     {"name":"minutesviber.app.js","url":"app.js"},
