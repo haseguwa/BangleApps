@@ -1,12 +1,15 @@
-{ "id": "minutesviber",
-  "name": "Minutes Viber",
-  "shortName":"MinutesViber",
+{
+  "id": "ncrclk2",
+  "name": "NCR Clock2",
+  "shortName": "NCR Clock2",
+  "version": "0.03",
+  "description": "NodeConf Remote clock",
   "icon": "app.png",
-  "version": "0.01",
-  "description": "Tell the current time by the vibration",
-  "tags": "Tools",
+  "type": "clock",
+  "tags": "clock",
+  "supports": ["BANGLEJS"],
   "storage": [
-    {"name":"minutesviber.app.js","url":"app.js"},
-    {"name":"minutesviber.img","url":"app-icon.js","evaluate":true}
+    {"name":"ncrclk2.app.js","url":"app.js"},
+    {"name":"ncrclk2.img","url":"app-icon.js","evaluate":true}
   ]
 }
