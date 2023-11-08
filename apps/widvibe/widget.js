@@ -18,22 +18,22 @@ rmin = 14;
   function vibe() {
     if (hour > 0) {
       if (hour == 1) {
-        setTimeout(vibe, HOUR_INTERVAL + SEPARATOR_INTERVAL);
+        setTimeout(WIDGETS.viber.vibe, HOUR_INTERVAL + SEPARATOR_INTERVAL);
       } else {
-        setTimeout(vibe, HOUR_INTERVAL);
+        setTimeout(WIDGETS.viber.vibe, HOUR_INTERVAL);
       }
       Bangle.buzz(HOUR_VIBRATION, 1);
       hour -= 1;
     } else if (qmin > 0) {
       if (qmin == 1) {
-        setTimeout(vibe, QUARTER_INTERVAL + SEPARATOR_INTERVAL, 1);
+        setTimeout(WIDGETS.viber.vibe, QUARTER_INTERVAL + SEPARATOR_INTERVAL, 1);
       } else {
-        setTimeout(vibe, QUARTER_INTERVAL, 1);
+        setTimeout(WIDGETS.viber.vibe, QUARTER_INTERVAL, 1);
       }
       Bangle.buzz(QUARTER_VIBRATION, 1);
       qmin -= 1;
     } else if (rmin > 0) {
-      setTimeout(vibe, REMAINING_INTERVAL, 1);
+      setTimeout(WIDGETS.viber.vibe, REMAINING_INTERVAL, 1);
       Bangle.buzz(REMAINING_VIBRATION, 1);
       rmin -= 1;
     } else {
