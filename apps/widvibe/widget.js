@@ -45,7 +45,7 @@ rmin = 14;
     g.drawImage(atob("GBgBAAAAAAAAAAAAAAAAAH4AAf+AB4HgDgBwHDw4OH4cMOcMYMMGYMMGMOcMOH4cHDw4DgBwB4HgAf+AAH4AAAAAAAAAAAAAAAAA"),this.x,this.y);
   }
   
-  WIDGETS.viber = { area: "tl", width: 22, draw: draw };
+  WIDGETS.viber = { area: "tl", width: 22, draw: draw, vibe: vibe };
 
   Bangle.on('touch', function(button, xy) {
     var currentDate = new Date();
@@ -54,6 +54,6 @@ rmin = 14;
     var qmin = Math.floor(min / 15);
     var rmin = min % 15;
     Bungle.buzz(200,1);
-    vibe();
+    WIDGETS.viber.vibe();
   }); 
 })(); 
