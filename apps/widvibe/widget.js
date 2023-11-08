@@ -15,15 +15,6 @@ qmin = 1;
 rmin = 14;
 */
 
-  function viber() {
-    var currentDate = new Date();
-    var hour = (currentDate.getHours() - 1) % 12 + 1;
-    var min = currentDate.getMinutes();
-    var qmin = Math.floor(min / 15);
-    var rmin = min % 15;
-    vibe();
-  }
-  
   function vibe() {
     if (hour > 0) {
       if (hour == 1) {
@@ -56,5 +47,12 @@ rmin = 14;
   
   WIDGETS.viber = { area: "tl", width: 22, draw: draw };
 
-  Bangle.on('touch', viber); 
+  Bangle.on('touch', function(button, xy) {
+    var currentDate = new Date();
+    var hour = (currentDate.getHours() - 1) % 12 + 1;
+    var min = currentDate.getMinutes();
+    var qmin = Math.floor(min / 15);
+    var rmin = min % 15;
+    vibe();
+  }); 
 })(); 
