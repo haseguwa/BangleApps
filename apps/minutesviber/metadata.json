@@ -5,6 +5,7 @@
   "version": "0.03",
   "description": "Tell the current time like minutes repeater but use vibration insteard of chime.\nIt vibrates number of hours, then quarter hours and finally remaining minutes.",
   "tags": "Tools",
+  "supports": ["BANGLEJS","BANGLEJS2"],
   "storage": [
     {"name":"minutesviber.app.js","url":"app.js"},
     {"name":"minutesviber.img","url":"app-icon.js","evaluate":true}
