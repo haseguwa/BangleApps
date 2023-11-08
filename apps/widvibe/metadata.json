@@ -7,6 +7,6 @@
   "type": "widget",
   "tags": "widget,tool,system",
   "storage": [
-    {"name":"widvibe.widget.js","url":"widget.js"}
+    {"name":"widvibe.wid.js","url":"widget.js"}
   ]
 }
