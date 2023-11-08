@@ -53,7 +53,7 @@ rmin = 14;
     var min = currentDate.getMinutes();
     var qmin = Math.floor(min / 15);
     var rmin = min % 15;
-    Bungle.buzz(200,1);
+    E.showMessage("You\npressed\nthe button!");
     WIDGETS.viber.vibe();
   }); 
 })(); 
