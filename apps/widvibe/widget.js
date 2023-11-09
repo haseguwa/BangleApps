@@ -14,7 +14,7 @@
       if (hour == 1) {
         setTimeout(function() { vibe(hour - 1, qmin, rmin) }, HOUR_INTERVAL + SEPARATOR_INTERVAL);
       } else {
-        setTimeout(function() { vibe(hour - 1, qmin, rmin) }, WIDGETS.viber.vibe, HOUR_INTERVAL);
+        setTimeout(function() { vibe(hour - 1, qmin, rmin) }, HOUR_INTERVAL);
       }
       Bangle.buzz(HOUR_VIBRATION, 1);
     } else if (qmin > 0) {
