@@ -40,7 +40,7 @@
 
   Bangle.on('touch', function(button, xy) {
     var currentDate = new Date();
-    var hour = (currentDate.getHours() - 1) % 12 + 1;
+    var hour = (currentDate.getHours() + 11) % 12 + 1;
     var min = currentDate.getMinutes();
     var qmin = Math.floor(min / 15);
     var rmin = min % 15;
