@@ -1,3 +1,4 @@
+
 (function() {
 
   const HOUR_VIBRATION = 150;
@@ -7,13 +8,6 @@
   const REMAINING_VIBRATION = 100;
   const REMAINING_INTERVAL = 300;
   const SEPARATOR_INTERVAL = 300;
-
-/*
- // for debug
-hour = 2;
-qmin = 1;
-rmin = 14;
-*/
 
   function vibe() {
     E.showMessage('vibe called ${hour} ${qmin} ${rmin}');
@@ -54,6 +48,7 @@ rmin = 14;
     var min = currentDate.getMinutes();
     var qmin = Math.floor(min / 15);
     var rmin = min % 15;
+    Bangle.buzz(200, 1);
     E.showMessage("You\npressed\nthe button!");
     WIDGETS.viber.vibe();
   }); 
