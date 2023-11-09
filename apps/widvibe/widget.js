@@ -12,9 +12,9 @@
   function vibe(hour, qmin, rmin) {
     if (hour > 0) {
       if (hour == 1) {
-        setTimeout(function() { vibe() }, HOUR_INTERVAL + SEPARATOR_INTERVAL);
+        setTimeout(function() { vibe() }, 300 + 300);
       } else {
-        setTimeout(function() { vibe() }, HOUR_INTERVAL);
+        setTimeout(function() { vibe() }, 300);
       }
       Bangle.buzz(HOUR_VIBRATION, 1);
       hour -= 1;
