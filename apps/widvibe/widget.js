@@ -10,7 +10,7 @@
   const SEPARATOR_INTERVAL = 300;
 
   function vibe() {
-    E.showMessage('vibe called ${hour} ${qmin} ${rmin}');
+    E.showMessage(`vibe called ${hour} ${qmin} ${rmin}`);
     if (hour > 0) {
       if (hour == 1) {
         setTimeout(WIDGETS.viber.vibe, HOUR_INTERVAL + SEPARATOR_INTERVAL);
