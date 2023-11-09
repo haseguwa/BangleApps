@@ -1,3 +1,4 @@
 0.01: Initial version
 0.02: Fix to reduce the hour vibration within 12 times
 0.03: Return to clock after the vibration finished
+0.04: Fix the count on 0:xx and 12:xx
