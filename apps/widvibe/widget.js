@@ -9,7 +9,7 @@
   const REMAINING_INTERVAL = 300;
   const SEPARATOR_INTERVAL = 300;
 
-  function vibe(hour, qmin, rmin) {
+  function vibe() {
     if (hour > 0) {
       if (hour == 1) {
         setTimeout(function() { vibe() }, HOUR_INTERVAL + SEPARATOR_INTERVAL);
