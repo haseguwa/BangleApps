@@ -10,6 +10,7 @@
   const SEPARATOR_INTERVAL = 300;
 
   function vibe() {
+    hour = 0;
     E.showMessage(`vibe called ${hour} ${qmin} ${rmin}`);
     if (hour > 0) {
       if (hour == 1) {
