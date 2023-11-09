@@ -12,20 +12,20 @@
   function vibe(hour, qmin, rmin) {
     if (hour > 0) {
       if (hour == 1) {
-        setTimeout(WIDGETS.viber.vibe, HOUR_INTERVAL + SEPARATOR_INTERVAL, hour - 1, qmin, rmin);
+        setTimeout(function() { vibe(hour - 1, qmin, rmin) }, HOUR_INTERVAL + SEPARATOR_INTERVAL);
       } else {
-        setTimeout(WIDGETS.viber.vibe, HOUR_INTERVAL, hour - 1, qmin, rmin);
+        setTimeout(function() { vibe(hour - 1, qmin, rmin) }, WIDGETS.viber.vibe, HOUR_INTERVAL);
       }
       Bangle.buzz(HOUR_VIBRATION, 1);
     } else if (qmin > 0) {
       if (qmin == 1) {
-        setTimeout(WIDGETS.viber.vibe, QUARTER_INTERVAL + SEPARATOR_INTERVAL, 1, hour, qmin - 1, rmin);
+        setTimeout(function() { vibe(hour, qmin - 1, rmin) }, QUARTER_INTERVAL + SEPARATOR_INTERVAL);
       } else {
-        setTimeout(WIDGETS.viber.vibe, QUARTER_INTERVAL, 1, hour, qmin - 1, rmin);
+        setTimeout(function() { vibe(hour, qmin - 1, rmin) }, QUARTER_INTERVAL);
       }
       Bangle.buzz(QUARTER_VIBRATION, 1);
     } else if (rmin > 0) {
-      setTimeout(WIDGETS.viber.vibe, REMAINING_INTERVAL, 1, hour, qmin, rmin - 1);
+      setTimeout(function() { vibe(hour, qmin, rmin - 1) }, REMAINING_INTERVAL);
       Bangle.buzz(REMAINING_VIBRATION, 1);
     } else {
     }
@@ -44,6 +44,6 @@
     var min = currentDate.getMinutes();
     var qmin = Math.floor(min / 15);
     var rmin = min % 15;
-    WIDGETS.viber.vibe(hour, qmin, rmin);
+    vibe(hour, qmin, rmin);
   }); 
 })(); 
