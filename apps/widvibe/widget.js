@@ -1,5 +1,5 @@
 
-(function() {
+(() => {
 
   const HOUR_VIBRATION = 150;
   const HOUR_INTERVAL = 300;
@@ -39,11 +39,11 @@
   WIDGETS.viber = { area: "tl", width: 22, draw: draw, vibe: vibe };
 
   Bangle.on('touch', function(button, xy) {
-    var currentDate = new Date();
-    var hour = (currentDate.getHours() + 11) % 12 + 1;
-    var min = currentDate.getMinutes();
-    var qmin = Math.floor(min / 15);
-    var rmin = min % 15;
+    let currentDate = new Date();
+    let hour = (currentDate.getHours() + 11) % 12 + 1;
+    let min = currentDate.getMinutes();
+    let qmin = Math.floor(min / 15);
+    let rmin = min % 15;
     vibe(hour, qmin, rmin);
-  }); 
-})(); 
+  });
+})();
