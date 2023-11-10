@@ -7,6 +7,7 @@
   const remain_vibration = 100;
   const remain_interval = 300;
   const separator_interval = 300;
+  var running = false;
 
   function vibe(hour, qmin, rmin) {
     if (hour > 0) {
@@ -19,6 +20,7 @@
       setTimeout(vibe, remain_interval, hour, qmin, rmin - 1);
       Bangle.buzz(remain_vibration, 1);
     } else {
+      running = false;
     }
   }
   
@@ -30,11 +32,14 @@
   WIDGETS.viber = { area: "tl", width: 22, draw: draw };
 
   Bangle.on('touch', function(button, xy) {
-    let currentDate = new Date();
-    let hour = (currentDate.getHours() + 11) % 12 + 1;
-    let min = currentDate.getMinutes();
-    let qmin = Math.floor(min / 15);
-    let rmin = min % 15;
-    vibe(hour, qmin, rmin);
+    if (!running) {
+      running = true;
+      let currentDate = new Date();
+      let hour = (currentDate.getHours() + 11) % 12 + 1;
+      let min = currentDate.getMinutes();
+      let qmin = Math.floor(min / 15);
+      let rmin = min % 15;
+      vibe(hour, qmin, rmin);
+    }
   });
 })();
