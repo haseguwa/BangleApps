@@ -1,27 +1,23 @@
 
 (() => {
-  const HOUR_VIBRATION = 150;
-  const HOUR_INTERVAL = 300;
-  const QUARTER_VIBRATION = 300;
-  const QUARTER_INTERVAL = 500;
-  const REMAINING_VIBRATION = 100;
-  const REMAINING_INTERVAL = 300;
-  const SEPARATOR_INTERVAL = 300;
+  const hour_vibration = 150;
+  const hour_interval = 300;
+  const quarter_vibration = 300;
+  const quarter_interval = 500;
+  const remain_vibration = 100;
+  const remain_interval = 300;
+  const separator_interval = 300;
 
   function vibe(hour, qmin, rmin) {
     if (hour > 0) {
-      setTimeout(vibe, (hour == 1) ? HOUR_INTERVAL + SEPARATOR_INTERVAL : HOUR_INTERVAL, hour - 1, qmin, rmin);
-      Bangle.buzz(HOUR_VIBRATION, 1);
+      setTimeout(vibe, hour_interval + (hour == 1 ? separator_interval : 0), hour - 1, qmin, rmin);
+      Bangle.buzz(hour_vibration, 1);
     } else if (qmin > 0) {
-      if (qmin == 1) {
-        setTimeout(vibe, QUARTER_INTERVAL + SEPARATOR_INTERVAL, hour, qmin - 1, rmin);
-      } else {
-        setTimeout(vibe, QUARTER_INTERVAL, hour, qmin - 1, rmin);
-      }
-      Bangle.buzz(QUARTER_VIBRATION, 1);
+      setTimeout(vibe, quarter_interval + (qmin == 1 ? separator_interval : 0), hour, qmin - 1, rmin);
+      Bangle.buzz(quarter_vibration, 1);
     } else if (rmin > 0) {
-      setTimeout(vibe, REMAINING_INTERVAL, hour, qmin, rmin - 1);
-      Bangle.buzz(REMAINING_VIBRATION, 1);
+      setTimeout(vibe, remain_interval, hour, qmin, rmin - 1);
+      Bangle.buzz(remain_vibration, 1);
     } else {
     }
   }
