@@ -1,6 +1,5 @@
 
 (() => {
-
   const HOUR_VIBRATION = 150;
   const HOUR_INTERVAL = 300;
   const QUARTER_VIBRATION = 300;
@@ -11,11 +10,7 @@
 
   function vibe(hour, qmin, rmin) {
     if (hour > 0) {
-      if (hour == 1) {
-        setTimeout(vibe, HOUR_INTERVAL + SEPARATOR_INTERVAL, hour - 1, qmin, rmin);
-      } else {
-        setTimeout(vibe, HOUR_INTERVAL, hour - 1, qmin, rmin);
-      }
+      setTimeout(vibe, (hour == 1) ? HOUR_INTERVAL + SEPARATOR_INTERVAL : HOUR_INTERVAL, hour - 1, qmin, rmin);
       Bangle.buzz(HOUR_VIBRATION, 1);
     } else if (qmin > 0) {
       if (qmin == 1) {
@@ -36,7 +31,7 @@
     g.drawImage(atob("GBgBAAAAAAAAAAAAAAAAAH4AAf+AB4HgDgBwHDw4OH4cMOcMYMMGYMMGMOcMOH4cHDw4DgBwB4HgAf+AAH4AAAAAAAAAAAAAAAAA"),this.x,this.y);
   }
   
-  WIDGETS.viber = { area: "tl", width: 22, draw: draw, vibe: vibe };
+  WIDGETS.viber = { area: "tl", width: 22, draw: draw };
 
   Bangle.on('touch', function(button, xy) {
     let currentDate = new Date();
