@@ -31,8 +31,8 @@
   
   WIDGETS.viber = { area: "tl", width: 22, draw: draw };
 
-  Bangle.on('touch', function(button, xy) {
-    if (!running) {
+  Bangle.on('touch', function(_, _) {
+    if (!running && Bangle.CLOCK == 1) {
       running = true;
       let currentDate = new Date();
       let hour = (currentDate.getHours() + 11) % 12 + 1;
