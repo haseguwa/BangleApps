@@ -2,7 +2,7 @@
   "id": "widvibe",
   "name": "Minutes Vibration Widget",
   "version": "0.09",
-  "description": "Tell the current time by using vibration.",
+  "description": "  "description": "Tell the current time by using vibration.\nIt vibrates number of hours, then quarter hours and finally remaining minutes.",
   "icon": "widget.png",
   "type": "widget",
   "tags": "widget",
