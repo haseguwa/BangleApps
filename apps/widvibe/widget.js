@@ -26,7 +26,8 @@
   
   function draw() {
     g.setColor(0x07ff);
-    g.drawImage(atob("GBgBAAAAAAAAAAAAAAAAAH4AAf+AB4HgDgBwHDw4OH4cMOcMYMMGYMMGMOcMOH4cHDw4DgBwB4HgAf+AAH4AAAAAAAAAAAAAAAAA"),this.x,this.y);
+    g.drawImage(atob("hkYwgXUqoEDgtQBRAGHCRUFCAgPEBYYIDAYIUFEpQ2GIYosIMJoWFABA"), this.x, this.y);
+//atob("GBgBAAAAAAAAAAAAAAAAAH4AAf+AB4HgDgBwHDw4OH4cMOcMYMMGYMMGMOcMOH4cHDw4DgBwB4HgAf+AAH4AAAAAAAAAAAAAAAAA"),this.x,this.y);
   }
   
   WIDGETS.viber = { area: "tl", width: 22, draw: draw };
