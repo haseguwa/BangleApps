@@ -46,7 +46,7 @@
         vibe(hour, qmin, rmin);
       }
     }
-  }, BTN, {repeat:true });
+  }, BTN, {repeat:true, edge:'falling' });
 
   Bangle.on('touch', function(button, xy) {
     if (!running && Bangle.CLOCK == 1) {
