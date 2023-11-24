@@ -26,10 +26,10 @@
   
   function draw() {
     g.setColor(0x07ff);
-    g.drawImage(atob("DBgBAAAAAgDgOAMAHABgDgOAcYOMDGBHAcAwA4AcAGAOA4BgBAAA"), this.x + 2, this.y + 2);
+    g.drawImage(atob("DBgB/////f8fx/z/4/+f8fx/jnxz85+4/j/P/H/j/5/x/H+f+///"), this.x, this.y);
   }
   
-  WIDGETS.viber = { area: "tl", width: 15, draw: draw };
+  WIDGETS.viber = { area: "tl", width: 12, draw: draw };
 
 /*
   setWatch(function() {
