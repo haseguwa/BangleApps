@@ -26,8 +26,7 @@
   
   function draw() {
     g.setColor(0x07ff);
-    g.drawImage(atob("DBgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"), this.x + 2, this.y + 2);
-//    g.drawImage(atob("CxQBBgDgFgJgR4jZMawfAcA4D4NYybEYIwTAsBwDAA=="),2+this.x,2+this.y);
+    g.drawImage(atob("DBgBAAAAAgDgOAMAHABgDgOAcYOMDGBHAcAwA4AcAGAOA4BgBAAA"), this.x + 2, this.y + 2);
   }
   
   WIDGETS.viber = { area: "tl", width: 15, draw: draw };
