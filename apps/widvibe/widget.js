@@ -26,29 +26,26 @@
   
   function draw() {
     g.setColor(0x07ff);
-    g.drawImage(atob("hkYwgXUqoEDgtQBRAGHCRUFCAgPEBYYIDAYIUFEpQ2GIYosIMJoWFABA"), this.x, this.y);
+    g.drawImage(atob("hkYwMB/4ADn/n/n/+f/z/z/3/7/++/33/5CAPPBQP3/+/CAN/74eCA=="), this.x, this.y);
+
 //atob("GBgBAAAAAAAAAAAAAAAAAH4AAf+AB4HgDgBwHDw4OH4cMOcMYMMGYMMGMOcMOH4cHDw4DgBwB4HgAf+AAH4AAAAAAAAAAAAAAAAA"),this.x,this.y);
   }
   
   WIDGETS.viber = { area: "tl", width: 22, draw: draw };
 
   setWatch(function() {
-    if (Bangle.CLOCK == 1) {
-      if (running) {
-        Bangle.showLauncher();
-      } else {
-        Bangle.showClock();
-        running = true; 
-        let currentDate = new Date();
-        let hour = (currentDate.getHours() + 11) % 12 + 1;
-        let min = currentDate.getMinutes();
-        let qmin = Math.floor(min / 15);
-        let rmin = min % 15;
-        vibe(hour, qmin, rmin);
-      }
+    if (!running && Bangle.CLOCK == 1) {
+      running = true; 
+      let currentDate = new Date();
+      let hour = (currentDate.getHours() + 11) % 12 + 1;
+      let min = currentDate.getMinutes();
+      let qmin = Math.floor(min / 15);
+      let rmin = min % 15;
+      vibe(hour, qmin, rmin);
     }
-  }, BTN, {repeat:true, edge:'falling' });
+  }, BTN, {repeat:true });
 
+/*
   Bangle.on('touch', function(button, xy) {
     if (!running && Bangle.CLOCK == 1) {
       running = true;
@@ -60,4 +57,5 @@
       vibe(hour, qmin, rmin);
     }
   });
+*/
 })();
