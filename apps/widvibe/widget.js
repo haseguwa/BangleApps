@@ -26,10 +26,10 @@
   
   function draw() {
     g.setColor(0x07ff);
-    g.drawImage(atob("hkYgImjA"), this.x, this.y);
+    g.drawImage(atob("CxQBBgDgFgJgR4jZMawfAcA4D4NYybEYIwTAsBwDAA=="),2+this.x,2+this.y);
   }
   
-  WIDGETS.viber = { area: "tl", width: 12, draw: draw };
+  WIDGETS.viber = { area: "tl", width: 15, draw: draw };
 
   setWatch(function() {
     if (!running && Bangle.CLOCK == 1) {
