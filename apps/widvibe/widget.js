@@ -31,6 +31,18 @@
   
   WIDGETS.viber = { area: "tl", width: 22, draw: draw };
 
+  setWatch(function() {
+    if (!running && Bangle.CLOCK == 1) {
+      running = true; 
+      let currentDate = new Date();
+      let hour = (currentDate.getHours() + 11) % 12 + 1;
+      let min = currentDate.getMinutes();
+      let qmin = Math.floor(min / 15);
+      let rmin = min % 15;
+      vibe(hour, qmin, rmin);
+    }
+  }, BTN, {repeat:true });
+
   Bangle.on('touch', function(button, xy) {
     if (!running && Bangle.CLOCK == 1) {
       running = true;
