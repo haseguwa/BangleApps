@@ -29,7 +29,7 @@
     g.drawImage(atob("hkYgImjA"), this.x, this.y);
   }
   
-  WIDGETS.viber = { area: "tl", width: 22, draw: draw };
+  WIDGETS.viber = { area: "tl", width: 12, draw: draw };
 
   setWatch(function() {
     if (!running && Bangle.CLOCK == 1) {
