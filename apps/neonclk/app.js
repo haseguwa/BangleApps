@@ -7,6 +7,8 @@ const rad = Math.PI / 180;
 const offset = [[-1,-2],[0,-2],[1,-2],[-2,-1],[-1,-1],[1,-1],[2,-1],[-2,0],[2,0],[-2,1],[-1,1],[1,1],[2,1],[-1,2],[0,2],[1,2]];
 
 g.clear();
+require("FontSinclair").add(Graphics);
+
 var drawTimeout;
 
 function drawhand(angle,st,ed) {
@@ -33,6 +35,13 @@ function draw() {
   let min = currentDate.getMinutes();
   let sec = currentDate.getSeconds();
 
+  g.setFont("Sinclair");
+  g.setFontAlign(0,0,0);
+  g.drawString(currentDate.getFullYear(), 45, 105);
+ g.drawString(require('locale').date(currentDate,0).substr(0,3).toUpperCase(), 45, 95);
+  g.drawString(currentDate.getDate(), 130,105);
+ g.drawString(require('locale').dow(currentDate).substr(0,3).toUpperCase(), 130, 95);
+  
   drawhand((hour - 3) * 30 + min / 2, 12, 50);
   g.setColor(((g.getBgColor() & 0x7E0) ^ 0x7E0) | 0x1F);
   drawhand((min - 15) * 6, 12, 65);
