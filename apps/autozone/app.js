@@ -1,37 +1,55 @@
-const hour_vibration = 150;
-const hour_interval = 300;
-const quarter_vibration = 300;
-const quarter_interval = 500;
-const remain_vibration = 100;
-const remain_interval = 300;
-const separator_interval = 300;
+const spotzone = [
+  [[0, 0, 0, 0]],
+  [[1, 0, 0, 0]],
+  [[2, 0, 0, 0]],
+  [[3, 0, 0, 0]],
+  [[4, 0, 0, 0]],
+  [[5, 0, 0, 0]],
+  [[6, 0, 0, 0]],
+  [[7, 0, 0, 0]],
+  [[8, 0, 0, 0]],
+  [[9, 0, 0, 0]],
+  [[10, 0, 0, 0]],
+  [[11, 0, 0, 0]],
+  [[12, 0, 0, 0]],
+  [[13, 0, 0, 0]],
+  [[14, 0, 0, 0]],
+  [[15, 0, 0, 0]],
+  [[16, 0, 0, 0]],
+  [[17, 0, 0, 0]],
+  [[18, 0, 0, 0]],
+  [[19, 0, 0, 0]],
+  [[20, 0, 0, 0]],
+  [[21, 0, 0, 0]],
+  [[22, 0, 0, 0]],
+  [[23, 0, 0, 0]]
+];
 
-let currentDate = new Date();
-let hour = (currentDate.getHours() + 11) % 12 + 1;
-let min = currentDate.getMinutes();
-let qmin = Math.floor(min / 15);
-let rmin = min % 15;
-
-/*
- // for debug
-hour = 2;
-qmin = 1;
-rmin = 14;
-*/
-
-function vibe(hour, qmin, rmin) {
-  if (hour > 0) {
-    setTimeout(vibe, hour_interval + (hour == 1 ? separator_interval : 0), hour - 1, qmin, rmin);
-    Bangle.buzz(hour_vibration, 1);
-  } else if (qmin > 0) {
-    setTimeout(vibe, quarter_interval + (qmin == 1 ? separator_interval : 0), hour, qmin - 1, rmin);
-    Bangle.buzz(quarter_vibration, 1);
-  } else if (rmin > 0) {
-    setTimeout(vibe, remain_interval, hour, qmin, rmin - 1);
-    Bangle.buzz(remain_vibration, 1);
+function autozone(gps) {
+  if (gps.satellites > 0) {
+//    E.setGPSPower(0);
+    zone = Math.round(gps.lon / 15);
+    for (let spot in spotzone[zone]) {
+      if (Math.pow(spot[0] - gps.lat, 2) + Math.pow(spot[1] - gps.lan, 2) < Math.pow(spot[3], 2)) {
+        zone = spot[4];
+        break;
+      }
+    }
+    E.setTimezone(zone);
+    let flag = (zone >= 0) ? '+' : '';
+    E.showMessage('Latitude\n' + gps.lat + '\n\nLongtitude\n' + gps.lon + '\n\nTimezone\n' + flag + zone);
   } else {
-    Bangle.load();
+    count += 1;
+    E.showMessage('' + count);
   }
 }
 
-vibe(hour, qmin, rmin);
+const gps = { satellites:1, lat:38.444985, lon:-122.571962 };
+autozone(gps);
+
+var count = 0;
+/*
+Bangle.setGPSPower(1);
+Bangle.on('GPS', autozone);
+E.showMessage('Getting Location');
+*/

@@ -1,0 +1,15 @@
+{
+  "id": "neonclk",
+  "name": "Neon Clock",
+  "version": "0.01",
+  "description": "Analog clock with Audiowide fontface.",
+  "icon": "app.png",
+  "type": "clock",
+  "tags": "clock",
+  "supports": ["BANGLEJS2"],
+  "allow_emulator": true,
+  "storage": [
+    {"name":"neonclk.app.js","url":"app.js"},
+    {"name":"neonclk.img","url":"app-icon.js","evaluate":true}
+  ]
+}
