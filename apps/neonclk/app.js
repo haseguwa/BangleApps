@@ -59,7 +59,7 @@ function draw() {
 }
 
 Bangle.on('lcdPower', (on) => {
-  if (!on) {
+  if (on) {
     if (drawTimeout) {
       clearTimeout(drawTimeout);
       drawTimeout = undefined;
