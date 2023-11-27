@@ -38,28 +38,28 @@ function draw() {
   g.setFont("Sinclair");
   g.setFontAlign(0,0,0);
   g.drawString(currentDate.getFullYear(), 45, 105);
- g.drawString(require('locale').date(currentDate,0).substr(0,3).toUpperCase(), 45, 95);
+  g.drawString(require('locale').date(currentDate,0).substr(0,3).toUpperCase(), 45, 95);
   g.drawString(currentDate.getDate(), 130,105);
- g.drawString(require('locale').dow(currentDate).substr(0,3).toUpperCase(), 130, 95);
+  g.drawString(require('locale').dow(currentDate).substr(0,3).toUpperCase(), 130, 95);
   
   drawhand((hour - 3) * 30 + min / 2, 12, 50);
   g.setColor(((g.getBgColor() & 0x7E0) ^ 0x7E0) | 0x1F);
   drawhand((min - 15) * 6, 12, 65);
 
-  if (Bangle.isLCDOn()) {
+  if (Bangle.isLocked()) {
+    drawTimeout = setTimeout(draw, 60000 - Date.now() % 60000);
+  } else {
     g.setColor(((g.getBgColor() & 0xFFE0) ^ 0xF800) | 0x1F);
     let sa = (sec - 15) * 6;
     let sx = Math.cos(sa * rad);
     let sy = Math.sin(sa * rad);
     g.drawLine(88+sx*4, 88+11+sy*4, 88+sx*70, 88+11+sy*70);
     drawTimeout = setTimeout(draw, 1000 - Date.now() % 1000);
-  } else {
-    drawTimeout = setTimeout(draw, 60000 - Date.now() % 60000);
   }
 }
 
-Bangle.on('lcdPower', (on) => {
-  if (on) {
+Bangle.on('lock', (on) => {
+  if (!on) {
     if (drawTimeout) {
       clearTimeout(drawTimeout);
       drawTimeout = undefined;
