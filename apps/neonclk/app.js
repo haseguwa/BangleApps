@@ -2,7 +2,7 @@
   const watch face = {
     width : 176, height : 152, bpp : 1,
     buffer : require("heatshrink").decompress(atob("ADMD+P4AgMfw//wAFBg/gCqHACqgRCCpUAuE4DQQ/BCIYV/CqODNoYVQTIgVQx7FDCqGOBQgV/NqaZTCswA/AH0fwCQECp+B//wCqWD//4CR0BHoMDw+AngVQ+DoBgFeCqH4geOgPuKyE4CoMDCqkP5wVTj8OCqd+CqBtD/AVPTIeO+AVPgbFCx9AjwVPwACBbaIVDwZbBCqWBLYIVSwBbBNqA9PCt4A/AH4A/AH4A/AH4A/AHkH/wSQgf/8EP/4VS+Ef/+ACqP4jkD4BWRvEcgIVSnAVJgfgCqcH+AVJNoIVHg0wNpKZBCqcHCqkAK6gVJQZYVJV5YiBbaZtBwATPQYgpQCoPwg/+CqR3JAH4A/AH4A/AH4A/AH4A/AH4AIgP8CSEDwE4g//CtMPg+ACqUOAYIVoIKptT//4h//FaIVBj//4AVSjkBCqAABnAV/CoJtSCoSZSCoTFSCoQTSAH4AJ//8AgUf/AECv/+CpQLDn4VUv4VPgE8AYXwBAdwWx/gCqF4Cqg9DCqv/NoijDAA0BE4a0En6DKgPATw8f/4VJgYVD8EOBQcHCpMHwAVph6HECp4PEv5tDv5tKjwEDn6ZDDQgAGngEDj7FPAHgA=="))
-  }
+  };
 
   const rad = Math.PI / 180;
   const offset = [[-1,-2],[0,-2],[1,-2],[-2,-1],[-1,-1],[1,-1],[2,-1],[-2,0],[2,0],[-2,1],[-1,1],[1,1],[2,1],[-1,2],[0,2],[1,2]];
