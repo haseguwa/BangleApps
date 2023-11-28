@@ -3,6 +3,10 @@
     width : 176, height : 152, bpp : 1,
     buffer : require("heatshrink").decompress(atob("ADMD+P4AgMfw//wAFBg/gCqHACqgRCCpUAuE4DQQ/BCIYV/CqODNoYVQTIgVQx7FDCqGOBQgV/NqaZTCswA/AH0fwCQECp+B//wCqWD//4CR0BHoMDw+AngVQ+DoBgFeCqH4geOgPuKyE4CoMDCqkP5wVTj8OCqd+CqBtD/AVPTIeO+AVPgbFCx9AjwVPwACBbaIVDwZbBCqWBLYIVSwBbBNqA9PCt4A/AH4A/AH4A/AH4A/AHkH/wSQgf/8EP/4VS+Ef/+ACqP4jkD4BWRvEcgIVSnAVJgfgCqcH+AVJNoIVHg0wNpKZBCqcHCqkAK6gVJQZYVJV5YiBbaZtBwATPQYgpQCoPwg/+CqR3JAH4A/AH4A/AH4A/AH4A/AH4AIgP8CSEDwE4g//CtMPg+ACqUOAYIVoIKptT//4h//FaIVBj//4AVSjkBCqAABnAV/CoJtSCoSZSCoTFSCoQTSAH4AJ//8AgUf/AECv/+CpQLDn4VUv4VPgE8AYXwBAdwWx/gCqF4Cqg9DCqv/NoijDAA0BE4a0En6DKgPATw8f/4VJgYVD8EOBQcHCpMHwAVph6HECp4PEv5tDv5tKjwEDn6ZDDQgAGngEDj7FPAHgA=="))
   };
+  const miffy = {
+    width : 20, height : 30, bpp : 1,
+    buffer : require("heatshrink").decompress(atob("gECgPAuEeh8B8Pwn8fwfx/AEC/P4j+/wP7+AEBgIEBh//gH/BIP/wf//l///n//+AgPv////f9++/7wOEn9f4IsBg/+gEfwBJEA="))
+  };
 
   const rad = Math.PI / 180;
   const offset = [[-1,-2],[0,-2],[1,-2],[-2,-1],[-1,-1],[1,-1],[2,-1],[-2,0],[2,0],[-2,1],[-1,1],[1,1],[2,1],[-1,2],[0,2],[1,2]];
@@ -38,11 +42,13 @@
 
     g.setFont("Sinclair");
     g.setFontAlign(0,0,0);
-    g.drawString(currentDate.getFullYear(), 45, 105);
     g.drawString(require('locale').date(currentDate,0).substr(0,3).toUpperCase(), 45, 95);
-    g.drawString(currentDate.getDate(), 130,105);
+    g.drawString(currentDate.getFullYear(), 45, 105);
     g.drawString(require('locale').dow(currentDate).substr(0,3).toUpperCase(), 130, 95);
+    g.drawString(currentDate.getDate(), 130,105);
   
+    g.drawImage(miffy, 78, 115);
+
     drawhand((hour - 3) * 30 + min / 2, 12, 50);
     g.setColor(((g.getBgColor() & 0x7E0) ^ 0x7E0) | 0x1F);
     drawhand((min - 15) * 6, 12, 65);
