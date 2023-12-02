@@ -7,7 +7,6 @@
   const rad = Math.PI / 30;
   const offset = [[-1,-2],[0,-2],[1,-2],[-2,-1],[-1,-1],[1,-1],[2,-1],[-2,0],[2,0],[-2,1],[-1,1],[1,1],[2,1],[-1,2],[0,2],[1,2]];
 
-  g.clear();
   require("FontSinclair").add(Graphics);
 
   let drawTimeout;
@@ -86,5 +85,5 @@
 
   Bangle.loadWidgets();
   draw();
-  setTimeout(Bangle.drawWidgets,0);
+  setTimeout(Bangle.drawWidgets, 0);
 }
