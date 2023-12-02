@@ -40,7 +40,7 @@
     g.drawString(require('locale').dow(date).substr(0,3).toUpperCase(), 130, 95);
     g.drawString(date.getDate(), 130,105);
   
-    drawhand((date.getHours % 12 - 3) * 5 + date.getMinutes() / 12, 12, 50);
+    drawhand(((date.getHours + 9) % 12) * 5 + date.getMinutes() / 12, 12, 50);
     g.setColor(((g.getBgColor() & 0x7E0) ^ 0x7E0) | 0x1F);
     drawhand(date.getMinutes() - 15, 12, 65);
 
