@@ -3,10 +3,6 @@
     width : 176, height : 152, bpp : 1,
     buffer : require("heatshrink").decompress(atob("ADMD+P4AgMfw//wAFBg/gCqHACqgRCCpUAuE4DQQ/BCIYV/CqODNoYVQTIgVQx7FDCqGOBQgV/NqaZTCswA/AH0fwCQECp+B//wCqWD//4CR0BHoMDw+AngVQ+DoBgFeCqH4geOgPuKyE4CoMDCqkP5wVTj8OCqd+CqBtD/AVPTIeO+AVPgbFCx9AjwVPwACBbaIVDwZbBCqWBLYIVSwBbBNqA9PCt4A/AH4A/AH4A/AH4A/AHkH/wSQgf/8EP/4VS+Ef/+ACqP4jkD4BWRvEcgIVSnAVJgfgCqcH+AVJNoIVHg0wNpKZBCqcHCqkAK6gVJQZYVJV5YiBbaZtBwATPQYgpQCoPwg/+CqR3JAH4A/AH4A/AH4A/AH4A/AH4AIgP8CSEDwE4g//CtMPg+ACqUOAYIVoIKptT//4h//FaIVBj//4AVSjkBCqAABnAV/CoJtSCoSZSCoTFSCoQTSAH4AJ//8AgUf/AECv/+CpQLDn4VUv4VPgE8AYXwBAdwWx/gCqF4Cqg9DCqv/NoijDAA0BE4a0En6DKgPATw8f/4VJgYVD8EOBQcHCpMHwAVph6HECp4PEv5tDv5tKjwEDn6ZDDQgAGngEDj7FPAHgA=="))
   };
-  const miffy = {
-    width : 20, height : 30, bpp : 1,
-    buffer : require("heatshrink").decompress(atob("gECgPAuEeh8B8Pwn8fwfx/AEC/P4j+/wP7+AEBgIEBh//gH/BIP/wf//l///n//+AgPv////f9++/7wOEn9f4IsBg/+gEfwBJEA="))
-  };
 
   const rad = Math.PI / 180;
   const offset = [[-1,-2],[0,-2],[1,-2],[-2,-1],[-1,-1],[1,-1],[2,-1],[-2,0],[2,0],[-2,1],[-1,1],[1,1],[2,1],[-1,2],[0,2],[1,2]];
@@ -19,10 +15,10 @@
   let drawhand = (angle,st,ed) => {
     let x = Math.cos(angle * rad);
     let y = Math.sin(angle * rad);
-    x1 = 88 + x * st;
-    y1 = 88 + 11 + y * st;
-    x2 = 88 + x * ed;
-    y2 = 88 + 11 + y * ed;
+    let x1 = 88 + x * st;
+    let y1 = 88 + 11 + y * st;
+    let x2 = 88 + x * ed;
+    let y2 = 88 + 11 + y * ed;
     for (let i = 0; i < offset.length; i++) {
       let ary = offset[i];
       g.drawLine(x1+ary[0], y1+ary[1], x2+ary[0], y2+ary[1]);
@@ -47,21 +43,28 @@
     g.drawString(require('locale').dow(currentDate).substr(0,3).toUpperCase(), 130, 95);
     g.drawString(currentDate.getDate(), 130,105);
   
-    g.drawImage(miffy, 78, 115);
-
     drawhand((hour - 3) * 30 + min / 2, 12, 50);
     g.setColor(((g.getBgColor() & 0x7E0) ^ 0x7E0) | 0x1F);
     drawhand((min - 15) * 6, 12, 65);
 
+    if (drawTimeout) {
+      clearTimeout(drawTimeout);
+    }
     if (Bangle.isLocked()) {
-      drawTimeout = setTimeout(draw, 60000 - Date.now() % 60000);
+      drawTimeout = setTimeout(() => {
+        drawTimeout = undefined;
+        draw();
+      }, 60000 - Date.now() % 60000);
     } else {
       g.setColor(((g.getBgColor() & 0xFFE0) ^ 0xF800) | 0x1F);
       let sa = (sec - 15) * 6;
       let sx = Math.cos(sa * rad);
       let sy = Math.sin(sa * rad);
       g.drawLine(88+sx*4, 88+11+sy*4, 88+sx*70, 88+11+sy*70);
-      drawTimeout = setTimeout(draw, 1000 - Date.now() % 1000);
+      drawTimeout = setTimeout(() => {
+        drawTimeout = undefined;
+        draw();
+      }, 1000 - Date.now() % 1000);
     }
   };
 
@@ -77,7 +80,7 @@
 
   Bangle.setUI({
     mode : "clock",
-    remove : function() {
+    remove : () => {
       if (drawTimeout) {
         clearTimeout(drawTimeout);
       }
