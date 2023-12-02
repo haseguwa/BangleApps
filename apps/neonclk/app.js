@@ -4,7 +4,7 @@
     buffer : require("heatshrink").decompress(atob("ADMD+P4AgMfw//wAFBg/gCqHACqgRCCpUAuE4DQQ/BCIYV/CqODNoYVQTIgVQx7FDCqGOBQgV/NqaZTCswA/AH0fwCQECp+B//wCqWD//4CR0BHoMDw+AngVQ+DoBgFeCqH4geOgPuKyE4CoMDCqkP5wVTj8OCqd+CqBtD/AVPTIeO+AVPgbFCx9AjwVPwACBbaIVDwZbBCqWBLYIVSwBbBNqA9PCt4A/AH4A/AH4A/AH4A/AHkH/wSQgf/8EP/4VS+Ef/+ACqP4jkD4BWRvEcgIVSnAVJgfgCqcH+AVJNoIVHg0wNpKZBCqcHCqkAK6gVJQZYVJV5YiBbaZtBwATPQYgpQCoPwg/+CqR3JAH4A/AH4A/AH4A/AH4A/AH4AIgP8CSEDwE4g//CtMPg+ACqUOAYIVoIKptT//4h//FaIVBj//4AVSjkBCqAABnAV/CoJtSCoSZSCoTFSCoQTSAH4AJ//8AgUf/AECv/+CpQLDn4VUv4VPgE8AYXwBAdwWx/gCqF4Cqg9DCqv/NoijDAA0BE4a0En6DKgPATw8f/4VJgYVD8EOBQcHCpMHwAVph6HECp4PEv5tDv5tKjwEDn6ZDDQgAGngEDj7FPAHgA=="))
   };
 
-  const rad = Math.PI / 180;
+  const rad = Math.PI / 30;
   const offset = [[-1,-2],[0,-2],[1,-2],[-2,-1],[-1,-1],[1,-1],[2,-1],[-2,0],[2,0],[-2,1],[-1,1],[1,1],[2,1],[-1,2],[0,2],[1,2]];
 
   g.clear();
@@ -31,21 +31,18 @@
     g.clearRect(Bangle.appRect);
     g.drawImage(watchface, 0, 24);
 
-    let currentDate = new Date();
-    let hour = currentDate.getHours() % 12;
-    let min = currentDate.getMinutes();
-    let sec = currentDate.getSeconds();
+    let date = new Date();
 
     g.setFont("Sinclair");
     g.setFontAlign(0,0,0);
-    g.drawString(require('locale').date(currentDate,0).substr(0,3).toUpperCase(), 45, 95);
-    g.drawString(currentDate.getFullYear(), 45, 105);
-    g.drawString(require('locale').dow(currentDate).substr(0,3).toUpperCase(), 130, 95);
-    g.drawString(currentDate.getDate(), 130,105);
+    g.drawString(require('locale').date(date,0).substr(0,3).toUpperCase(), 46, 95);
+    g.drawString(date.getFullYear(), 45, 105);
+    g.drawString(require('locale').dow(date).substr(0,3).toUpperCase(), 130, 95);
+    g.drawString(date.getDate(), 130,105);
   
-    drawhand((hour - 3) * 30 + min / 2, 12, 50);
+    drawhand((date.getHours % 12 - 3) * 5 + date.getMinutes() / 12, 12, 50);
     g.setColor(((g.getBgColor() & 0x7E0) ^ 0x7E0) | 0x1F);
-    drawhand((min - 15) * 6, 12, 65);
+    drawhand(date.getMinutes() - 15, 12, 65);
 
     if (drawTimeout) {
       clearTimeout(drawTimeout);
@@ -57,7 +54,7 @@
       }, 60000 - Date.now() % 60000);
     } else {
       g.setColor(((g.getBgColor() & 0xFFE0) ^ 0xF800) | 0x1F);
-      let sa = (sec - 15) * 6;
+      let sa = date.getSeconds() - 15;
       let sx = Math.cos(sa * rad);
       let sy = Math.sin(sa * rad);
       g.drawLine(88+sx*4, 88+11+sy*4, 88+sx*70, 88+11+sy*70);
