@@ -30,7 +30,7 @@
     if (gps.satellites > 0) {
       E.setGPSPower(0);
       zone = Math.round(gps.lon / 15);
-      for (let spot in spotzone[zone]) {
+      for (let spot in spotzone[zone + 12]) {
         if (Math.pow(spot[0] - gps.lat, 2) + Math.pow(spot[1] - gps.lan, 2) < Math.pow(spot[3], 2)) {
           zone = spot[4];
           break;

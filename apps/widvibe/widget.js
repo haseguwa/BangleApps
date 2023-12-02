@@ -9,7 +9,7 @@
   const separator_interval = 300;
   var running = false;
 
-  function vibe(hour, qmin, rmin) {
+  let vibe = (hour, qmin, rmin) => {
     if (hour > 0) {
       setTimeout(vibe, hour_interval + (hour == 1 ? separator_interval : 0), hour - 1, qmin, rmin);
       Bangle.buzz(hour_vibration, 1);
@@ -24,35 +24,19 @@
     }
   }
   
-  function draw() {
+  let draw = () => {
     g.setColor(0x07ff);
     g.drawImage(atob("DBgBAAAAAgDgOAMAHABgDgOAcYOMDGBHAcAwA4AcAGAOA4BgBAAA"), this.x, this.y);
   }
   
   WIDGETS.viber = { area: "tl", width: 12, draw: draw };
 
-/*
-  setWatch(function() {
-    if (!running && Bangle.CLOCK == 1) {
-      running = true; 
-      let currentDate = new Date();
-      let hour = (currentDate.getHours() + 11) % 12 + 1;
-      let min = currentDate.getMinutes();
-      let qmin = Math.floor(min / 15);
-      let rmin = min % 15;
-      vibe(hour, qmin, rmin);
-    }
-  }, BTN, {repeat:true });
-*/
-  Bangle.on('touch', function(button, xy) {
+  Bangle.on('touch', (button, xy) => {
     if (!running && Bangle.CLOCK == 1) {
       running = true;
-      let currentDate = new Date();
-      let hour = (currentDate.getHours() + 11) % 12 + 1;
-      let min = currentDate.getMinutes();
-      let qmin = Math.floor(min / 15);
-      let rmin = min % 15;
-      vibe(hour, qmin, rmin);
+      let date = new Date();
+      let min = date.getMinutes();
+      vibe((date.getHours() + 11) % 12 + 1, Math.floor(min / 15), min % 15);
     }
   });
 })();
