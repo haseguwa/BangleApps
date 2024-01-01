@@ -1,4 +1,3 @@
-
 (() => {
   const hour_vibration = 150;
   const hour_interval = 300;
