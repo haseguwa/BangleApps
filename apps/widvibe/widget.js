@@ -6,7 +6,7 @@
   const remain_vibration = 100;
   const remain_interval = 300;
   const separator_interval = 300;
-  var running = false;
+  let running = false;
 
   let vibe = (hour, qmin, rmin) => {
     if (hour > 0) {
@@ -29,7 +29,7 @@
     g.drawImage(atob("DBgBAAAAAgDgOAMAHABgDgOAcYOMDGBHAcAwA4AcAGAOA4BgBAAA"), this.x, this.y);
   }
   
-  WIDGETS.viber = { area: "tl", width: 12, draw: draw };
+  WIDGETS.widvibe = { area: "tl", width: 12, draw: draw };
 
   Bangle.on('touch', (button, xy) => {
     if (!running && Bangle.CLOCK == 1) {
