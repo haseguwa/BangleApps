@@ -25,6 +25,7 @@
   }
   
   let draw = () => {
+    g.reset();
     g.setColor(0x07ff);
     g.drawImage(atob("DBgBAAAAAgDgOAMAHABgDgOAcYOMDGBHAcAwA4AcAGAOA4BgBAAA"), this.x, this.y);
   }
