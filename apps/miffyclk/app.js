@@ -12,12 +12,9 @@
   const rad = Math.PI / 30;
   const fgcolor = g.getColor();
   const bgcolor = g.getBgColor();
-  let drawTimeout;
-
-  let min = Math.floor(Math.random() * 60);
-  let hour = Math.floor(Math.random() * 23);
-
   const ear = [-11, 0, -11, -8, -9, -14, 0, -22, 9, -14, 11, -8, 11, 0];
+
+  let drawTimeout;
 
   const drawear = (x,y,angle) => {
     let poly = [];
@@ -39,11 +36,11 @@
 
     g.drawImage(miffy, 0, 24);
     g.drawImage(watchface, 0, 24);
-/*
+
     let date = new Date();
     let hour = date.getHours();
     let min = date.getMinutes();
-*/
+
     if (min <= 30) {
       drawear(102, 77, min);
       drawear(73, 77, hour * 5 + min / 12);
@@ -51,9 +48,6 @@
       drawear(73, 77, hour * 5 + min / 12);
       drawear(102, 77, min);
     }
-
-    min = (min + 1) % 60;
-    hour = (hour + 1) % 24;
 
     if (drawTimeout) {
       clearTimeout(drawTimeout);
@@ -63,16 +57,6 @@
       draw();
     }, 500 - Date.now() % 500);
   };
-
-  Bangle.on('lock', (on) => {
-    if (!on) {
-      if (drawTimeout) {
-        clearTimeout(drawTimeout);
-        drawTimeout = undefined;
-      }
-      draw();
-    }
-  });
 
   Bangle.setUI({
     mode : "clock",
