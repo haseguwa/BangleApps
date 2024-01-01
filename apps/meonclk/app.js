@@ -15,7 +15,7 @@
 
   let drawTimeout;
 
-  let drawhand = (angle,st,ed) => {
+  const drawhand = (angle,st,ed) => {
     let x = Math.cos(angle * rad);
     let y = Math.sin(angle * rad);
     let x1 = 88 + x * st;
@@ -29,7 +29,7 @@
     g.drawLine(88+x*4, 88+11+y*4, 88+x*st, 88+11+y*st);
   };
 
-  let draw = () => {
+  const draw = () => {
     g.reset();
     g.clearRect(Bangle.appRect);
     g.drawImage(watchface, 0, 24);
