@@ -26,7 +26,7 @@
   let draw = () => {
     g.reset();
     g.setColor(0x07ff);
-    g.drawImage(atob("DBgBAAAAAgDgOAMAHABgDgOAcYOMDGBHAcAwA4AcAGAOA4BgBAAA"), this.x, this.y);
+    g.drawImage(atob("DBgBAAAAAgDgOAMAHABgDgOAcYOMDGBHAcAwA4AcAGAOA4BgBAAA"), WIDGETS.widvibe.x, WIDGETS.widvibe.y);
   }
   
   WIDGETS.widvibe = { area: "tl", width: 12, draw: draw };
