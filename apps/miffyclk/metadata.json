@@ -1,6 +1,6 @@
 {
-  "id": "miffyclk",
-  "name": "Miffy Clock",
+  "id": "meonclk",
+  "name": "Meon Clock",
   "version": "0.01",
   "description": "Analog clock with Audiowide fontface.",
   "icon": "app.png",
@@ -9,7 +9,7 @@
   "supports": ["BANGLEJS2"],
   "allow_emulator": true,
   "storage": [
-    {"name":"miffyclk.app.js","url":"app.js"},
-    {"name":"miffyclk.img","url":"app-icon.js","evaluate":true}
+    {"name":"meonclk.app.js","url":"app.js"},
+    {"name":"meonclk.img","url":"app-icon.js","evaluate":true}
   ]
 }
