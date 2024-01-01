@@ -23,10 +23,10 @@
     }
   }
   
-  let draw = () => {
+  let draw = (w) => {
     g.reset();
     g.setColor(0x07ff);
-    g.drawImage(atob("DBgBAAAAAgDgOAMAHABgDgOAcYOMDGBHAcAwA4AcAGAOA4BgBAAA"), WIDGETS.widvibe.x, WIDGETS.widvibe.y);
+    g.drawImage(atob("DBgBAAAAAgDgOAMAHABgDgOAcYOMDGBHAcAwA4AcAGAOA4BgBAAA"), w.x, w.y);
   }
   
   WIDGETS.widvibe = { area: "tl", width: 12, draw: draw };
