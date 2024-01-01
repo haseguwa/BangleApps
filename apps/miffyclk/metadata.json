@@ -1,0 +1,15 @@
+{
+  "id": "mifficlk",
+  "name": "Miffy Clock",
+  "version": "0.01",
+  "description": "Analog clock by Miffy.",
+  "icon": "app.png",
+  "type": "clock",
+  "tags": "clock",
+  "supports": ["BANGLEJS2"],
+  "allow_emulator": true,
+  "storage": [
+    {"name":"miffyclk.app.js","url":"app.js"},
+    {"name":"miffyclk.img","url":"app-icon.js","evaluate":true}
+  ]
+}
