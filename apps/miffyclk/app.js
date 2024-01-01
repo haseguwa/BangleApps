@@ -55,7 +55,7 @@
     drawTimeout = setTimeout(() => {
       drawTimeout = undefined;
       draw();
-    }, 500 - Date.now() % 500);
+    }, 60000 - Date.now() % 60000);
   };
 
   Bangle.setUI({
