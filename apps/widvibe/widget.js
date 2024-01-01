@@ -23,13 +23,11 @@
     }
   }
   
-  let draw = (w) => {
+  WIDGETS.widvibe = { area: "tl", width: 12, draw: function() {
     g.reset();
     g.setColor(0x07ff);
-    g.drawImage(atob("DBgBAAAAAgDgOAMAHABgDgOAcYOMDGBHAcAwA4AcAGAOA4BgBAAA"), w.x, w.y);
-  }
-  
-  WIDGETS.widvibe = { area: "tl", width: 12, draw: draw };
+    g.drawImage(atob("DBgBAAAAAgDgOAMAHABgDgOAcYOMDGBHAcAwA4AcAGAOA4BgBAAA"), this.x, this.y);
+  }};
 
   Bangle.on('touch', (button, xy) => {
     if (!running && Bangle.CLOCK == 1) {
