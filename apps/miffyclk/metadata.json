@@ -2,7 +2,7 @@
   "id": "miffyclk",
   "name": "Miffy Clock",
   "version": "0.01",
-  "description": "Analog clock by Miffy.",
+  "description": "Analog clock by the ears of Miffy.\nThe left ear indicates the hours and the right ear indicates the minutes.",
   "icon": "app.png",
   "type": "clock",
   "tags": "clock",

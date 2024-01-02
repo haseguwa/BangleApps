@@ -4,10 +4,22 @@
     buffer : require("heatshrink").decompress(atob("AH4A/AH4A/AH4A/AH4A/AH4A/AH4A/AH4A/AH4APh//AYP/+AVPj//wEB//4Cp8///Agf//gVlv//8EH//+CvvwTgIVQ/4VDWYQV/Cv4V/Cv4V/Ct/gg4Vnv4VD/wV/CqYACCs0/Cof8Cv4VRCgbxQgIVFwAVNgYVF4AVNa4IAE8AVNh4VF+AVjj4VF/AVjYgjGQCtd/Cov+CvIUFAAIV7TYX+LoIVO/zzC/gZBCv4VPM4JtEePQVVKoQAD/gV5VoXH8YDB/AVQ+OPCqEPbIn/+AVNg4rF8AVNgZXF4AVNgKDFwAVNbgraONwhsQIQxAPWIitOAAgVBCiQA/AH4A/AH4A/AH4A/AH4A/AH4AgA=="))
   };
 
-  const watchface = {
-    width : 176, height : 152, bpp : 4, transparent : 1,
-    buffer : require("heatshrink").decompress(atob("iIA/AH4A/AH4AwgEAgJC/ACcQ///+BD/iCbBCaEPK4P/WCAoTADRDCIR6uCAAJFBCxwoSeTrzQCYhGBCxooTVzouBcJxCCCIIXCTxgoTK7xDCIRhXB+Hu9z2PFCZXcQgIyCcJqWBK4PgK6AoSK7cOIQYuMV4ITBCgRCNFCYAaiEAIYSLCIR5DCeRooTV7fwFoIuCIZauBK4kAFECubQAIuDQphXCCgRCOFCaubFwkAIRwABgEALgQofK7jzC8BCNK4fwAYYofK7vwgAECQ5gUDK6QoRK7n/AYYuMWAUBI4YogADLzDFyMAgBbEFEKwb+AyDFyJbCFEqwWgApBGQQo/GTAo/AH4A/AH4A/AH4A/AH4A/ACMAgEBIX5HTiH///wKX5HTh4PB/6w/I6RmCAALCOV2xHMB4fwNYLCMK+5HLB4RlBYRpX3I5gPB+Hu9xnBK/5HRMoIPB8BX/I6JnBhwPD+BW/I566BB4iu/I55mBB4kAK35HPB4XwB4JsBV/5HPB4X/gEACgRX/I5wPD+ADDK/5HPXQJX/I6poCgITDK/5HQgEACYhX/I6gTCAH5H/AH4A/AH4A/AH4A/AH4A/AH4A/AH4A/AH4A/AH4A/AH4A/AH4A/AH4A/AH4A/AH4A/AF8AgEBIX5LTiH///wJ35LTh4LB/6w/JaRiCAAK+KV3xLIBYfwM4K+IK/5LHBYRhBXxJX/JZALB+Hu9xjBK/5XGJZRhBBYPgK/4AGJZRjBhwLD+BS/V4pLJWwILEV34AEJZRiBBYkAKX6uFJZILC+ALBNAKv/JZ4LC/8AgAQCKn5LOBYfwAYZU/JZ62BK/4AJJZZkCgIPDKf5LQgEAB4hT/JagPCAH5L/AH4A/AH4A/AH4A/AH4A/AH4A/AH4A/AH4A/AH4A/AH4A/AH4A/AH4A/AH4A/AH4A/AGcAgEBIX5HTiH///wKX5HTh4PB/6w/I6RmCAALCOV2xHMB4fwNYLCMK+5HLB4RlBYRpX3I5gPB+Hu9xnBK/5HRMoIPB8BX/I6JnBhwPD+BW/I566BB4iu/I55mBB4kAK35HPB4XwB4JsBV/5HPB4X/gEACgRX/I5wPD+ADDK/5HPXQJX/I6poCgITDK/5HQgEACYhX/I6gTCAH5H/AH4A/AH4A/AH4A/AH4AwiEAgAo/ACkP///gIo/QqYtB//wCqCaBISAoVQrYuBcJ5DCISAoUK7sAcJ4UDWB4oUK7aEBGQSeMeQZDBgBrPFCJXch3u8BXS+BHCFEAAaiEAFwPuIZxXCVoJbCWBgoTV7fwFoIuCIRo9BCYYUNFCauaIQYuBQpytBCYLzCIZYoVVzIuEgCFNIYLyCK4JDMFChXbIYRCOCgRXEIZgoUK7nwgAECeRpXEgAogK7v/AYZXOeYQVBV54oQADRDCK6f/gEALgQofWDvwGQZXP+ADDFD6wcgApBGQRCOK6QoTLcTzOgJbDFEAAvgEALYhD8LbQA/AH4A/AH4AvA="))
-  };
+  const flowers = [
+    { width : 18, height : 18, bpp : 4, transparent : 1, buffer : require("heatshrink").decompress(atob("iMRiAEDAAcP///gIHDiAHB//wCAwIBDoYIDgAdDBAIPBBgQdBAgMO93gBAY9B9wABCwQRB+AIEgI9BBAgiDBAcAGgYsECIY+FgJPDAYYsCBAwtDBgYIBKAIMESQoMDA=")) },
+    { width : 18, height : 18, bpp : 4, transparent : 1, buffer : require("heatshrink").decompress(atob("iMRAYYADiH//8BBAkPBAPwiEABYIQCAAIMB+AIHDwIIC+EADwgDBh3u8AICFgPw9wABEgkABAwRHEYIIDgA1BGAQsCHAJYEHwRZBBAZSCBBR8DMIaOEHISSFBgIQCA==")) },
+    { width : 18, height : 18, bpp : 4, transparent : 1, buffer : require("heatshrink").decompress(atob("iMQgEBiIAEh//+AMEiH/AAMBBggIC+AMDBA/wBAXwgAaBDYQEBh3u8AIDGIPuAAItDh/wBAgsCBAgiDBAZQCGAQsDCIY+ELIkAJ4Z0BQAIUCBAZ/DNQQIDMoaSFDoIQC")) },
+    { width : 18, height : 18, bpp : 4, transparent : 1, buffer : require("heatshrink").decompress(atob("iMRiADCAAkP/8BiIQE///+ADCBgIEC/4UBBgIIL+EABAgFBh3u8AnEgHuAAI5CAQPwBAYZBBAsAHoIRK/4sEEYQ+FgJhDKQRiCEgQIFQoIeERAh8EAAiODA=")) },
+    { width : 18, height : 18, bpp : 4, transparent : 1, buffer : require("heatshrink").decompress(atob("iICCAAIECiH//8BAggDC+ERh4IF/8AAYQIECAQfCAoQCCDwIIGCAIxDgHwgAIDIYPuCQIaE+AICGokPHwfwFYg2DDIQFCBBAFCAQIhC+A6CAAJ2EAAgUBJwQADC4IFDA")) },
+    { width : 18, height : 18, bpp : 4, transparent : 1, buffer : require("heatshrink").decompress(atob("iICBgMRAAkP//wAgMQBoQIB/8BiANDBAXwAYYVBAgQCBBAQsBBAoQCgAIDgIeCBIIZDE4fuJYYIEAgIIBEYUPDQg1DBQIsCMYYIDKAgIJEghiDQQgICHYRICAYKcBAAY")) },
+    { width : 18, height : 18, bpp : 4, transparent : 1, buffer : require("heatshrink").decompress(atob("iIACgEBAoYABiH/+AIFh///8BDgcBBAUACgIFBAQX/Ao4IG+ABCBAghBBAUBHYIMB9wZCHgYIBHQROCgEPHgIZBK4YrEK4gIECAQIDGohgCHwx2EBAQxBAgibEAgQA==")) },
+    { width : 18, height : 18, bpp : 4, transparent : 1, buffer : require("heatshrink").decompress(atob("iIADAwMBiMQAYf//4EBh//+ADCBAn/gACBBAvwBBQeBFAYICHoYkDBQQ7D+HuD4ZICgAIFH43wFgX/h4JCgIQCBAI1DBApQGFY3wgJUDQwiCEAAhLCiI")) },
+    { width : 18, height : 18, bpp : 4, transparent : 1, buffer : require("heatshrink").decompress(atob("iICCAAIECiGZzMBAggDCyERhIIFzMAAYQIECAQfCAoQCCDwIIGCAIxDgGQgAIDIYPuCQIaEyAICGokJHweQFYg2DDIQFCBBAFCAQIhCyA6CAAJ2EAAgUBJwQADC4IFDA")) },
+    { width : 18, height : 18, bpp : 4, transparent : 1, buffer : require("heatshrink").decompress(atob("iMRgEBAYIADiHM4AJBBgcM5gJBgACBBAgACBDo1BAAY1CBBAbEDIQSCL4QQDAgUVBgQCBu9wgEVgEHu8BAQIABgoDCuAIDuoIDDQIICBoSBCBgMFHAQ2EGoIACA=")) },
+    { width : 18, height : 18, bpp : 4, transparent : 1, buffer : require("heatshrink").decompress(atob("iMRgEBAYIADiHu8AJBBgcO9wJBgACBBAgACBDo1BAAY1CBBAbEDIQSCL4QQDAgUVBgQCBu9wgEVgEHu8BAQIABgoDCuAIDuoIDDQIICBoSBCBgMFHAQ2EGoIACA=")) },
+    { width : 18, height : 18, bpp : 4, transparent : 1, buffer : require("heatshrink").decompress(atob("iMRgEBAYIADiGZyAJBBgcJzIJBgACBBAgACBDo1BAAY1CBBAbEDIQSCL4QQDAgUVBgQCBu9wgEVgEHu8BAQIABgoDCuAIDuoIDDQIICBoSBCBgMFHAQ2EGoIACA=")) },
+    {  width : 18, height : 18, bpp : 4, transparent : 1, buffer : require("heatshrink").decompress(atob("iIABAgMQgEBA4fu90O93gA4MQA4PuBYQSBBAfgh0A8EQCwQFB8AEBiADBBwIMBhwUBBoIKBDgQIBFIICBBAgPDBAYsCAAkBCIwIKKgIbE8EBLAISEg9wPAISDgFwuBrBEoUAg93Q4QTBA4NwBAaSDGYMBA==")) }
+  ];
+  const pos = [[79,27],[120,29],[151,53],[155,91],[151,129],[120,153],[79,155],[38,153],[7,129],[3,91],[7,53],[38,29]];
 
   const rad = Math.PI / 30;
   const fgcolor = g.getColor();
@@ -35,7 +47,10 @@
     g.clearRect(Bangle.appRect);
 
     g.drawImage(miffy, 0, 24);
-    g.drawImage(watchface, 0, 24);
+    for (let i = 0; i < 12; i++) {
+      let ary = pos[i];
+      g.drawImage(flowers[Math.floor(Math.random() * flowers.length)], ary[0], ary[1]);
+    }
 
     let date = new Date();
     let hour = date.getHours();
