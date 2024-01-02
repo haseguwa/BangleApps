@@ -1,7 +1,7 @@
 {
   const miffy = {
-  width : 64, height : 77, bpp : 1,
-  buffer : require("heatshrink").decompress(atob("gEP/4DB//wAYMf/+AgP//AHBn//4ED//8A5N///gg///wHT+A6BA4X/A4ZDDA/4H/S4YHKW7IHHAAQHKd4IACe4gHVAwZXCgIHFwEDA4vANYQAD8CDCAAaLDA4kfA4v4A45GEJAQHPPwiACA54GFACY5CEof+LIRFDA6whBE4hXQA46PXHoXH8a3F+OPA4TPCDYfwc4QPD8D3CD4fAgIvFwEAKAn+gEAfAnwA4IYECwIABIIX4AwQABA4IEC"))
+    width : 64, height : 77, bpp : 1,
+    buffer : require("heatshrink").decompress(atob("gEP/4DB//wAYMf/+AgP//AHBn//4ED//8A5N///gg///wHT+A6BA4X/A4ZDDA/4H/S4YHKW7IHHAAQHKd4IACe4gHVAwZXCgIHFwEDA4vANYQAD8CDCAAaLDA4kfA4v4A45GEJAQHPPwiACA54GFACY5CEof+LIRFDA6whBE4hXQA46PXHoXH8a3F+OPA4TPCDYfwc4QPD8D3CD4fAgIvFwEAKAn+gEAfAnwA4IYECwIABIIX4AwQABA4IEC"))
   };
 
   const flowers = [
@@ -17,8 +17,10 @@
     { width : 18, height : 18, bpp : 4, transparent : 1, buffer : require("heatshrink").decompress(atob("iMRgEBAYIADiHM4AJBBgcM5gJBgACBBAgACBDo1BAAY1CBBAbEDIQSCL4QQDAgUVBgQCBu9wgEVgEHu8BAQIABgoDCuAIDuoIDDQIICBoSBCBgMFHAQ2EGoIACA=")) },
     { width : 18, height : 18, bpp : 4, transparent : 1, buffer : require("heatshrink").decompress(atob("iMRgEBAYIADiHu8AJBBgcO9wJBgACBBAgACBDo1BAAY1CBBAbEDIQSCL4QQDAgUVBgQCBu9wgEVgEHu8BAQIABgoDCuAIDuoIDDQIICBoSBCBgMFHAQ2EGoIACA=")) },
     { width : 18, height : 18, bpp : 4, transparent : 1, buffer : require("heatshrink").decompress(atob("iMRgEBAYIADiGZyAJBBgcJzIJBgACBBAgACBDo1BAAY1CBBAbEDIQSCL4QQDAgUVBgQCBu9wgEVgEHu8BAQIABgoDCuAIDuoIDDQIICBoSBCBgMFHAQ2EGoIACA=")) },
-    {  width : 18, height : 18, bpp : 4, transparent : 1, buffer : require("heatshrink").decompress(atob("iIABAgMQgEBA4fu90O93gA4MQA4PuBYQSBBAfgh0A8EQCwQFB8AEBiADBBwIMBhwUBBoIKBDgQIBFIICBBAgPDBAYsCAAkBCIwIKKgIbE8EBLAISEg9wPAISDgFwuBrBEoUAg93Q4QTBA4NwBAaSDGYMBA==")) }
+    {  width : 18, height : 18, bpp : 4, transparent : 1, buffer : require("heatshrink").decompress(atob("iIABAgMQgEBA4fu90O93gA4MQA4PuBYQSBBAfgh0A8EQCwQFB8AEBiADBBwIMBhwUBBoIKBDgQIBFIICBBAgPDBAYsCAAkBCIwIKKgIbE8EBLAISEg9wPAISDgFwuBrBEoUAg93Q4QTBA4NwBAaSDGYMBA==")) },
+    { width : 18, height : 18, bpp : 4, transparent : 1, buffer : require("heatshrink").decompress(atob("iMRAggACiHA5nMBQkMA4IKCgIQEBYPA4AQDBAQSChkAAwMMDYcQCwMMAAIbCFYcAAoQCD4F3BoYaBIoN3E4UAEYQEBDoZHCDYI+CJAgIFEgQICLQR9BLIp2CBIJbCRAgZCCAaaDA4QA=")) }
   ];
+
   const pos = [[79,27],[120,29],[151,53],[155,91],[151,129],[120,153],[79,155],[38,153],[7,129],[3,91],[7,53],[38,29]];
 
   const rad = Math.PI / 30;
