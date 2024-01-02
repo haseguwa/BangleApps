@@ -43,7 +43,6 @@
   };
 
   const drawmiffy = (hour, min) => {
-    g.clearRect(32, 48, 143, 151);
     g.drawImage(miffy, 56, 68);
     if (min <= 30) {
       drawear(102, 77, min);
@@ -60,6 +59,7 @@
     let date = new Date();
     let sec = Math.floor(date.getSeconds() / 5);
     if (sec == 0) {
+      g.clearRect(32, 48, 143, 151);
       drawmiffy(date.getHours(), date.getMinutes());
     }
 
