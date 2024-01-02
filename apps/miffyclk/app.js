@@ -1,7 +1,7 @@
 {
   const miffy = {
-    width : 176, height : 152, bpp : 1,
-    buffer : require("heatshrink").decompress(atob("AH4A/AH4A/AH4A/AH4A/AH4A/AH4A/AH4A/AH4APh//AYP/+AVPj//wEB//4Cp8///Agf//gVlv//8EH//+CvvwTgIVQ/4VDWYQV/Cv4V/Cv4V/Ct/gg4Vnv4VD/wV/CqYACCs0/Cof8Cv4VRCgbxQgIVFwAVNgYVF4AVNa4IAE8AVNh4VF+AVjj4VF/AVjYgjGQCtd/Cov+CvIUFAAIV7TYX+LoIVO/zzC/gZBCv4VPM4JtEePQVVKoQAD/gV5VoXH8YDB/AVQ+OPCqEPbIn/+AVNg4rF8AVNgZXF4AVNgKDFwAVNbgraONwhsQIQxAPWIitOAAgVBCiQA/AH4A/AH4A/AH4A/AH4A/AH4AgA=="))
+  width : 64, height : 77, bpp : 1,
+  buffer : require("heatshrink").decompress(atob("gEP/4DB//wAYMf/+AgP//AHBn//4ED//8A5N///gg///wHT+A6BA4X/A4ZDDA/4H/S4YHKW7IHHAAQHKd4IACe4gHVAwZXCgIHFwEDA4vANYQAD8CDCAAaLDA4kfA4v4A45GEJAQHPPwiACA54GFACY5CEof+LIRFDA6whBE4hXQA46PXHoXH8a3F+OPA4TPCDYfwc4QPD8D3CD4fAgIvFwEAKAn+gEAfAnwA4IYECwIABIIX4AwQABA4IEC"))
   };
 
   const flowers = [
@@ -29,9 +29,9 @@
   let drawTimeout;
 
   const drawear = (x,y,angle) => {
-    let poly = [];
     let sin = Math.sin(angle * rad);
     let cos = Math.cos(angle * rad);
+    let poly = [];
     for (let i = 0; i < ear.length; i += 2) {
       poly[i] = ear[i] * cos - ear[i+1] * sin + x;
       poly[i+1] = ear[i] * sin + ear[i+1] * cos + y;
@@ -42,20 +42,9 @@
     g.drawPoly(poly, false);
   };
 
-  const draw = () => {
-    g.reset();
-    g.clearRect(Bangle.appRect);
-
-    g.drawImage(miffy, 0, 24);
-    for (let i = 0; i < 12; i++) {
-      let ary = pos[i];
-      g.drawImage(flowers[Math.floor(Math.random() * flowers.length)], ary[0], ary[1]);
-    }
-
-    let date = new Date();
-    let hour = date.getHours();
-    let min = date.getMinutes();
-
+  const drawmiffy = (hour, min) => {
+    g.clearRect(32, 48, 143, 151);
+    g.drawImage(miffy, 56, 68);
     if (min <= 30) {
       drawear(102, 77, min);
       drawear(73, 77, hour * 5 + min / 12);
@@ -63,6 +52,20 @@
       drawear(73, 77, hour * 5 + min / 12);
       drawear(102, 77, min);
     }
+  };
+
+  const draw = () => {
+    g.reset();
+
+    let date = new Date();
+    let sec = Math.floor(date.getSeconds() / 5);
+    if (sec == 0) {
+      drawmiffy(date.getHours(), date.getMinutes());
+    }
+
+    let ary = pos[sec];
+    g.clearRect(ary[0], ary[1], ary[0]+17, ary[1]+17);
+    g.drawImage(flowers[Math.floor(Math.random() * flowers.length)], ary[0], ary[1]);
 
     if (drawTimeout) {
       clearTimeout(drawTimeout);
@@ -70,7 +73,20 @@
     drawTimeout = setTimeout(() => {
       drawTimeout = undefined;
       draw();
-    }, 60000 - Date.now() % 60000);
+    }, 5000 - Date.now() % 5000);
+  };
+
+  const drawall = () => {
+    g.reset();
+    g.clearRect(Bangle.appRect);
+
+    let date = new Date();
+    drawmiffy(date.getHours(), date.getMinutes());
+
+    for (let i = 0; i < 12; i++) {
+      let ary = pos[i];
+      g.drawImage(flowers[Math.floor(Math.random() * flowers.length)], ary[0], ary[1]);
+    }
   };
 
   Bangle.setUI({
@@ -83,6 +99,7 @@
   });
 
   Bangle.loadWidgets();
+  drawall();
   draw();
   setTimeout(Bangle.drawWidgets, 0);
 }
