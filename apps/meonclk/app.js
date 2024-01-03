@@ -87,6 +87,7 @@
     remove : () => {
       if (drawTimeout) {
         clearTimeout(drawTimeout);
+        drawTimeout = undefined;
       }
     }
   });
