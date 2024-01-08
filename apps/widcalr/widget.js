@@ -1,7 +1,7 @@
 (() => {
   WIDGETS.calr = {
     area: "tr", width: 22, draw: function() {
-      let date = new Date(),
+      let date = new Date();
       let day = date.getDate();
 
       g.reset();
@@ -11,8 +11,8 @@
       g.setFont("Vector:16");
       g.drawString(day, x+11, y + 11);
 
-      if (WIDGETS["calr"].to) {
-	clearTimeout(WIDGETS["calr"].to);
+      if (WIDGETS.calr.to) {
+      	clearTimeout(WIDGETS.calr.to);
       }
       WIDGETS.calr.to = setTimeout(() => {
         WIDGETS.calr.draw();
@@ -20,3 +20,4 @@
     }
   };
 })();
+
