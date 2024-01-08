@@ -3,17 +3,17 @@
   require("Font7x11Numeric7Seg").add(Graphics);
 
   function draw() {
-    const date = new Date();
-    const month = require("locale").month(date, true);
-    const day = 25;//date.getDate();
-    const fgcolor = g.getColor();
-    const bgcolor = g.getBgColor();
     const x = this.x;
     const y = this.y;
     const x2 = x + 18;
+    const date = new Date();
+    const month = require("locale").month(date, true);
+    const day = date.getDate();
 
     g.reset();
     g.setFontAlign(0, 0, 0);
+    const fgcolor = g.getColor();
+    const bgcolor = g.getBgColor();
 
     g.setColor(1,0,0);
     g.fillRect(x, y, x2, y + 7);

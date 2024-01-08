@@ -2,7 +2,7 @@
   "id": "widcalr",
   "name": "Calendar Widget",
   "version": "0.01",
-  "description": "Widget with the current date",
+  "description": "Widget with the current date on the right",
   "icon": "widget.png",
   "type": "widget",
   "tags": "widget,calendar",
