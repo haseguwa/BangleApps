@@ -21,7 +21,7 @@
     g.drawString(month, this.x + 11, this.y + 4);
 
     if (WIDGETS.calr.to) {
-     	clearTimeout(WIDGETS.calr.to);
+      clearTimeout(WIDGETS.calr.to);
     }
     WIDGETS.calr.to = setTimeout(draw, (86400000 - date) % 86400000);
   }
