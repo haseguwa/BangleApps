@@ -31,7 +31,7 @@
     }
   });
 
-  Bangle.on('twist', () => {
+  Bangle.on('faceUp', () => {
     if (!running && Bangle.CLOCK == 1) {
       running = true;
       const date = new Date();
