@@ -31,7 +31,7 @@
     }
   });
 
-  Bangle.on('faceUp', () => {
+  Bangle.on('gesture', () => {
     if (!running && Bangle.CLOCK == 1) {
       running = true;
       const date = new Date();
