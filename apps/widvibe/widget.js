@@ -22,12 +22,21 @@
     g.drawImage(atob("DBgBAAAAAgDgOAMAHABgDgOAcYOMDGBHAcAwA4AcAGAOA4BgBAAA"), this.x, this.y);
   }};
 
-  Bangle.on('touch', (button, xy) => {
+  const viberation = () => {
     if (!running && Bangle.CLOCK == 1) {
       running = true;
       const date = new Date();
       const min = date.getMinutes();
       vibe((date.getHours() + 11) % 12 + 1, Math.floor(min / 15), min % 15);
     }
+  };
+
+  Bangle.on('touch', (button, xy) => {
+    vibration();
   });
+
+  Bangle.on('twist', () => {
+    vibration();
+  });
+
 })();
