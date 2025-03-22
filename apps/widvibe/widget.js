@@ -30,4 +30,14 @@
       setTimeout(vibe, 50, (date.getHours() + 11) % 12 + 1, Math.floor(min / 15), min % 15);
     }
   });
+
+  Bangle.on('twist', () => {
+    if (!running && Bangle.CLOCK == 1) {
+      running = true;
+      const date = new Date();
+      const min = date.getMinutes();
+      setTimeout(vibe, 50, (date.getHours() + 11) % 12 + 1, Math.floor(min / 15), min % 15);
+    }
+  });
+
 })();
