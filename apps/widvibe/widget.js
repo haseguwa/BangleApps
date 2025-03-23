@@ -1,4 +1,9 @@
 (() => {
+  const settinsg = Object.assign({
+    touch : true,
+    twist : true,
+  }, require('Storage').readJSON('widvibe.settings.json', true) || {});
+  
   let running = false;
 
   const vibe = (hour, qmin, rmin) => {
@@ -23,7 +28,7 @@
   }};
 
   Bangle.on('touch', (button, xy) => {
-    if (!running && Bangle.CLOCK == 1) {
+    if (!running && Bangle.CLOCK == 1 && settings.touch) {
       running = true;
       const date = new Date();
       const min = date.getMinutes();
@@ -32,7 +37,7 @@
   });
 
   Bangle.on('twist', () => {
-    if (!running && Bangle.CLOCK == 1) {
+    if (!running && Bangle.CLOCK == 1 && settings.twist) {
       running = true;
       const date = new Date();
       const min = date.getMinutes();
