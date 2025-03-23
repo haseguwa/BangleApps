@@ -45,25 +45,31 @@
     });
   }
 
-  Bangle.on('twist', () => {
-    if (!running && Bangle.CLOCK == 1 && settings.twist) {
-      running = true;
-      setTimeout(vibenow, 0);
-    }
-  });
+  if (settings.twist) {
+    Bangle.on('twist', () => {
+      if (!running && Bangle.CLOCK == 1) {
+        running = true;
+        setTimeout(vibenow, 0);
+      }
+    });
+  }
 
-  Bangle.on('faceUp', (up) => {
-    if (!running && Bangle.CLOCK == 1 && settings.faceup && up) {
-      running = true;
-      setTimeout(vibenow, 0);
-    }
-  });
+  if (settings.faceup) {
+    Bangle.on('faceUp', (up) => {
+      if (!running && Bangle.CLOCK == 1 && up) {
+        running = true;
+        setTimeout(vibenow, 0);
+      }
+    });
+  }
 
-  Bangle.on('tap', (data) => {
-    if (!running && Bangle.CLOCK == 1 && settings.doubletap && data.double) {
-      running = true;
-      setTimeout(vibenow, 0);
-    }
-  });
+  if(settings.doubletap) {
+    Bangle.on('tap', (data) => {
+      if (!running && Bangle.CLOCK == 1 && data.double) {
+        running = true;
+        setTimeout(vibenow, 0);
+      }
+    });
+  }
 
 })();
