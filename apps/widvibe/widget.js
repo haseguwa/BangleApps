@@ -1,5 +1,5 @@
 (() => {
-  const settinsg = Object.assign({
+  const settings = Object.assign({
     touch : true,
     twist : true,
     faceup : true,
@@ -24,10 +24,10 @@
   }
 
   const vibenow = () => {
-    running = true;
     const date = new Date();
+    const hour = date.getHours();
     const min = date.getMinutes();
-    setTimeout(vibe, 50, (date.getHours() + 11) % 12 + 1, Math.floor(min / 15), min % 15);
+    setTimeout(vibe, 100, (hour + 11) % 12 + 1, Math.floor(min / 15), min % 15);
   }
  
   WIDGETS.widvibe = { area: "tl", width: 12, draw: function() {
@@ -38,25 +38,29 @@
 
   Bangle.on('touch', (button, xy) => {
     if (!running && Bangle.CLOCK == 1 && settings.touch) {
-      setTimeout(vibenow, 50);
+      running = true;
+      setTimeout(vibenow, 0);
     }
   });
 
   Bangle.on('twist', () => {
     if (!running && Bangle.CLOCK == 1 && settings.twist) {
-      setTimeout(vibenow, 50);
+      running = true;
+      setTimeout(vibenow, 0);
     }
   });
 
   Bangle.on('faceUp', (up) => {
     if (!running && Bangle.CLOCK == 1 && settings.faceup && up) {
-      setTimeout(vibenow, 50);
+      running = true;
+      setTimeout(vibenow, 0);
     }
   });
 
   Bangle.on('tap', (data) => {
     if (!running && Bangle.CLOCK == 1 && settings.doubletap && data.double) {
-      setTimeout(vibenow, 50);
+      running = true;
+      setTimeout(vibenow, 0);
     }
   });
 
