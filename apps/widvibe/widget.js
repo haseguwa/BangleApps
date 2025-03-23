@@ -36,12 +36,14 @@
     g.drawImage(atob("DBgBAAAAAgDgOAMAHABgDgOAcYOMDGBHAcAwA4AcAGAOA4BgBAAA"), this.x, this.y);
   }};
 
-  Bangle.on('touch', (button, xy) => {
-    if (!running && Bangle.CLOCK == 1 && settings.touch) {
-      running = true;
-      setTimeout(vibenow, 0);
-    }
-  });
+  if (settings.touch) {
+    Bangle.on('touch', (button, xy) => {
+      if (!running && Bangle.CLOCK == 1) {
+        running = true;
+        setTimeout(vibenow, 0);
+      }
+    });
+  }
 
   Bangle.on('twist', () => {
     if (!running && Bangle.CLOCK == 1 && settings.twist) {
