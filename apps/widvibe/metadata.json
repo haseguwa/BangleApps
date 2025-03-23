@@ -8,7 +8,7 @@
   "tags": "widget",
   "supports": ["BANGLEJS","BANGLEJS2"],
   "storage": [
-    {"name":"widvibe.wid.js","url":"widget.js"}
+    {"name":"widvibe.wid.js","url":"widget.js"},
     {"name":"widvibe.settings.js","url":"settings.js"}
   ],
   "data": [
