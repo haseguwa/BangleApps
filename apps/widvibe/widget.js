@@ -21,14 +21,14 @@
     } else {
       running = false;
     }
-  }
+  };
 
   const vibenow = () => {
     const date = new Date();
     const hour = date.getHours();
     const min = date.getMinutes();
     setTimeout(vibe, 100, (hour + 11) % 12 + 1, Math.floor(min / 15), min % 15);
-  }
+  };
  
   WIDGETS.widvibe = { area: "tl", width: 12, draw: function() {
     g.reset();
