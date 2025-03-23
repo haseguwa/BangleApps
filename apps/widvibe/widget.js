@@ -2,6 +2,8 @@
   const settinsg = Object.assign({
     touch : true,
     twist : true,
+    faceup : true,
+    doubletap : true,
   }, require('Storage').readJSON('widvibe.settings.json', true) || {});
   
   let running = false;
