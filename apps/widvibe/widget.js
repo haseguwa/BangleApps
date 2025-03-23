@@ -21,7 +21,7 @@
     }
   }
 
-  const vibenow = {
+  const vibenow = () => {
     running = true;
     const date = new Date();
     const min = date.getMinutes();
