@@ -3,7 +3,7 @@
   let pasttime = 0;
   let connected = false;
 
-  let check = () {
+  let check = () => {
     setTimeout(check, 60000);
 
     pasttime += 60;
