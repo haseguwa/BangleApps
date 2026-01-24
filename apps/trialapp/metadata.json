@@ -1,0 +1,13 @@
+{ "id": "trialapp",
+  "name": "Trial Application for some development",
+  "shortName":"TrialApp",
+  "icon": "app.png",
+  "version": "0.01",
+  "description": "Application for development.",
+  "tags": "Tools",
+  "supports": ["BANGLEJS","BANGLEJS2"],
+  "storage": [
+    {"name":"trialapp.app.js","url":"app.js"},
+    {"name":"trialapp.img","url":"app-icon.js","evaluate":true}
+  ]
+}
