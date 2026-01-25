@@ -75,7 +75,11 @@
 
   WIDGETS.widadjuster = { area: 'tr', width: 22, draw: function() {
     g.reset();
-    g.setBgColor(0, 1, (lasttime == 0) ? 1 : 0);
+    if (lasttime) {
+      g.setBgColor(0, 0, 1);
+    } else {
+      g.setBgColor(1, 0, 1);
+    }
     g.clearRect(this.x, this.y, this.x + 21, this.y + 23);
     g.setFont('6x8').setFontAlign(0, 0);
     let dailyerror = parseInt((-86400000 / cycle) * adjust / 100) / 10;
