@@ -1,10 +1,11 @@
 (() => {
   const SETTING = 'widadjuster.settings.json';
-  let lasttime = Date.now();
-  let pasttime = 0;
-  let needupdate = false;
+
   let adjust = -125;
-  let cycle = 2160000; //36min
+  let cycle = 2160000; //36min as default
+  let connected = false;
+  let elapsed;
+  let lasttime;
   let checktid;
   let updatetid;
 
@@ -17,17 +18,17 @@
   const check = () => {
     let currenttime = Date.now();
 
-    if (needupdate) {
-      pasttime = pasttime + 60000 - parseInt(pasttime / cycle) * adjust;
-      let realpasttime = currenttime - lasttime;
-      let timediff = realpasttime - pasttime;
-      adjust = (timediff > 0) ? 125 : -125;
-      let count = timediff / adjust;
-      cycle = parseInt(pasttime / count);
-
-      pasttime = 0;
+    if (connected) {
+      if (lasttime) {
+        elapsed += 60000 - parseInt(elapsed / cycle) * adjust;
+        let timediff = currenttime - lasttime - elapsed;
+        adjust = (timediff > 0) ? 125 : -125;
+        let count = timediff / adjust;
+        cycle = parseInt(elapsed / count);
+      }
+      elapsed = 0;
       lasttime = Date.now();
-      needupdate = false;
+      connected = false;
 
       WIDGETS.widadjuster.draw();
 
@@ -36,41 +37,48 @@
         cycle: cycle,
       });
 
-      updatetid = setTimeout(() => {
-        updatetid = undefined;
-        update();
-      }, cycle);
+      runupdate();
     } else {
-      pasttime = currenttime - lasttime;
+      elapsed = currenttime - lasttime;
     }
+    runcheck();
+  }
+
+  const runcheck = () => {
     checktid = setTimeout(() => {
       checktid = undefined;
       check();
     }, 60000 - Date.now() % 60000);
   }
 
-  const update = () => {
-    Date.setTime(Date.now() + adjust);
-
+  const runupdate = () => {
     updatetid = setTimeout(() => {
       updatetid = undefined;
       update();
     }, cycle);
   }
 
+  const update= () => {
+    Date.setTime(Date.now() + adjust);
+    update();
+  }
+
   NRF.on('connect', () => {
-    needupdate = true;
+    connected = true;
     clearTimeout(updatetid);
+    if (!checktid) {
+      runcheck();
+    }
   });
 
-  checktid = setTimeout(check, 60000 - Date.now() % 60000);
   updatetid = setTimeout(update, cycle);
 
   WIDGETS.widadjuster = { area: 'tr', width: 22, draw: function() {
     g.reset();
-    g.setFont('6x8').setFontAlign(0, 0);
+    g.setBgColor(0, 1, (lasttime == 0) ? 1 : 0);
     g.clearRect(this.x, this.y, this.x + 21, this.y + 23);
-    let dailyerror = (86400000 / cycle) * adjust / 1000;
+    g.setFont('6x8').setFontAlign(0, 0);
+    let dailyerror = parseInt((-86400000 / cycle) * adjust / 100) / 10;
     g.drawString(dailyerror, this.x + 11, this.y + 6);
     g.drawString(parseInt(cycle / 60000), this.x + 11, this.y + 18);
   }};
