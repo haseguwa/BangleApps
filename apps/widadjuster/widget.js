@@ -28,8 +28,8 @@
     g.setFont('4x5').setFontAlign(0, 0);
     let dailyerror = (-86400000 / cycle) * adjust / 1000;
     let sign = dailyerror > 0 ? "+" : "";
-    g.drawString(sign + dailyerror.toFixed(1), this.x + 8, this.y + 7);
-    g.drawString(parseInt(cycle / 60000), this.x + 8, this.y + 17);
+    g.drawString(sign + dailyerror.toFixed(1), this.x + 9, this.y + 7);
+    g.drawString(parseInt(cycle / 60000), this.x + 9, this.y + 17);
   }};
 
   const check = () => {
