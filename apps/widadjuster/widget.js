@@ -1,4 +1,6 @@
 (() => {
+  require("Font4x5").add(Graphics);
+
   const SETTING = 'widadjuster.settings.json';
 
   let adjust = -125;
@@ -14,6 +16,21 @@
     adjust = saved.adjust;
     cycle = saved.cycle;
   } 
+
+  WIDGETS.widadjuster = { area: 'tr', width: 17, draw: function() {
+    g.reset();
+    if (lasttime) {
+      g.setBgColor(0, 0, 1);
+    } else {
+      g.setBgColor(1, 0, 1);
+    }
+    g.clearRect(this.x, this.y, this.x + 16, this.y + 23);
+    g.setFont('4x5').setFontAlign(0, 0);
+    let dailyerror = (-86400000 / cycle) * adjust / 1000;
+    let sign = dailyerror > 0 ? "+" : "";
+    g.drawString(sign + dailyerror.toFixed(1), this.x + 8, this.y + 7);
+    g.drawString(parseInt(cycle / 60000), this.x + 8, this.y + 17);
+  }};
 
   const check = () => {
     let currenttime = Date.now();
@@ -51,6 +68,11 @@
     }, 60000 - Date.now() % 60000);
   }
 
+  const update = () => {
+    Date.setTime(Date.now() + adjust);
+    runupdate();
+  }
+
   const runupdate = () => {
     updatetid = setTimeout(() => {
       updatetid = undefined;
@@ -58,32 +80,17 @@
     }, cycle);
   }
 
-  const update= () => {
-    Date.setTime(Date.now() + adjust);
-    update();
-  }
-
   NRF.on('connect', () => {
     connected = true;
-    clearTimeout(updatetid);
+    if (updatetid) {
+      clearTimeout(updatetid);
+      updatetid = undefined;
+    }
     if (!checktid) {
       runcheck();
     }
   });
 
-  updatetid = setTimeout(update, cycle);
+  runupdate();
 
-  WIDGETS.widadjuster = { area: 'tr', width: 22, draw: function() {
-    g.reset();
-    if (lasttime) {
-      g.setBgColor(0, 0, 1);
-    } else {
-      g.setBgColor(1, 0, 1);
-    }
-    g.clearRect(this.x, this.y, this.x + 21, this.y + 23);
-    g.setFont('6x8').setFontAlign(0, 0);
-    let dailyerror = parseInt((-86400000 / cycle) * adjust / 100) / 10;
-    g.drawString(dailyerror, this.x + 11, this.y + 6);
-    g.drawString(parseInt(cycle / 60000), this.x + 11, this.y + 18);
-  }};
 })();
