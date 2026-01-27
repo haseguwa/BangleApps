@@ -3,8 +3,8 @@
 
   const SETTING = 'widadjuster.settings.json';
 
-  let adjust = -125;
-  let cycle = 2160000; //36min as default
+  let adjust = -0.125;
+  let cycle = 2160; //36min as default
   let connected = false;
   let elapsed;
   let lasttime;
@@ -25,29 +25,32 @@
       g.setBgColor(g.getBgColor() ^ 0xF81F);
     }
     g.clearRect(this.x, this.y, this.x + 16, this.y + 23);
-    let dailyerror = (-86400000 / cycle) * adjust / 1000;
+    let dailyerror = -86400 * adjust / cycle;
     let sign = dailyerror > 0 ? "+" : "";
     let str = sign + dailyerror.toFixed(1);
     g.setFont('4x5').setFontAlign(-1, -1);
     g.drawString(str.substring(0,3), this.x + 2, this.y + 4);
     g.drawString(str.substring(3), this.x + 12, this.y + 4);
     g.setFontAlign(0, 0);
-    g.drawString(parseInt(cycle / 60000), this.x + 9, this.y + 16);
+    g.drawString(parseInt(cycle / 60), this.x + 9, this.y + 16);
   }};
 
   const check = () => {
-    let currenttime = Date.now();
+    let currenttime = getTime();
 
     if (connected) {
       if (lasttime) {
-        elapsed += 60000 - parseInt(elapsed / cycle) * adjust;
+        elapsed += 60 - parseInt(elapsed / cycle) * adjust;
+        if (elapsed < 3600) {
+          return;
+        }
         let timediff = currenttime - lasttime - elapsed;
-        adjust = (timediff > 0) ? 125 : -125;
+        adjust = (timediff > 0) ? 0.125 : -0.125;
         let count = timediff / adjust;
         cycle = parseInt(elapsed / count);
       }
       elapsed = 0;
-      lasttime = Date.now();
+      lasttime = getTime();
       connected = false;
 
       WIDGETS.widadjuster.draw();
@@ -70,7 +73,7 @@
   }
 
   const update = () => {
-    Date.setTime(Date.now() + adjust);
+    setTime(getTime() + adjust);
     runupdate();
   }
 
