@@ -29,10 +29,10 @@
     let sign = dailyerror > 0 ? "+" : "";
     let str = sign + dailyerror.toFixed(1);
     g.setFont('4x5').setFontAlign(-1, -1);
-    g.drawString(str.substring(0,3), this.x + 2, this.y + 4);
+    g.drawString(str.substring(0,3), this.x + 3, this.y + 4);
     g.drawString(str.substring(3), this.x + 12, this.y + 4);
     g.setFontAlign(0, 0);
-    g.drawString(parseInt(cycle / 60000), this.x + 8, this.y + 16);
+    g.drawString(parseInt(cycle / 60000), this.x + 4, this.y + 16);
   }};
 
   const check = () => {
