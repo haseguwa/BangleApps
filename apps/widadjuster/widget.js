@@ -25,13 +25,14 @@
       g.setBgColor(1, 0, 1);
     }
     g.clearRect(this.x, this.y, this.x + 16, this.y + 23);
-    g.setFont('4x5').setFontAlign(1, 1);
     let dailyerror = (-86400000 / cycle) * adjust / 1000;
     let sign = dailyerror > 0 ? "+" : "";
     let str = sign + dailyerror.toFixed(1);
+    g.setFont('4x5').setFontAlign(-1, -1);
     g.drawString(str.substring(0,3), this.x + 1, this.y + 2);
     g.drawString(str.substring(3), this.x + 12, this.y + 2);
-    g.drawString(parseInt(cycle / 60000), this.x + 6, this.y + 18);
+    g.setFontAlign(0, 0);
+    g.drawString(parseInt(cycle / 60000), this.x + 12, this.y + 16);
   }};
 
   const check = () => {
