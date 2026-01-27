@@ -20,9 +20,9 @@
   WIDGETS.widadjuster = { area: 'tr', width: 17, draw: function() {
     g.reset();
     if (lasttime) {
-      g.setBgColor(0, 0, 1);
+      g.setBgColor(g.getBgColor() ^ 0x001F);
     } else {
-      g.setBgColor(1, 0, 1);
+      g.setBgColor(g.getBgColor() ^ 0xF81F);
     }
     g.clearRect(this.x, this.y, this.x + 16, this.y + 23);
     let dailyerror = (-86400000 / cycle) * adjust / 1000;
@@ -32,7 +32,7 @@
     g.drawString(str.substring(0,3), this.x + 2, this.y + 4);
     g.drawString(str.substring(3), this.x + 12, this.y + 4);
     g.setFontAlign(0, 0);
-    g.drawString(parseInt(cycle / 60000), this.x + 8, this.y + 16);
+    g.drawString(parseInt(cycle / 60000), this.x + 9, this.y + 16);
   }};
 
   const check = () => {
@@ -56,8 +56,6 @@
         adjust: adjust,
         cycle: cycle,
       });
-
-      runupdate();
     } else {
       elapsed = currenttime - lasttime;
     }
