@@ -19,7 +19,7 @@
 
   WIDGETS.widadjuster = { area: 'tr', width: 17, draw: function() {
     g.reset();
-    if (lasttime) {
+    if (connected || lasttime) {
       g.setBgColor(g.getBgColor() ^ 0x001F);
     } else {
       g.setBgColor(g.getBgColor() ^ 0xF81F);
@@ -81,7 +81,7 @@
     updatetid = setTimeout(() => {
       updatetid = undefined;
       update();
-    }, cycle);
+    }, cycle * 1000);
   }
 
   NRF.on('connect', () => {
