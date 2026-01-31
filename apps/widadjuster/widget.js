@@ -3,64 +3,98 @@
 
   const SETTING = 'widadjuster.settings.json';
 
-  let adjust = -0.125;
-  let cycle = 2160; //36min as default
-  let connected = false;
-  let elapsed;
-  let lasttime;
+  let currentadjust = -0.125;
+  let currentcycle = 2160;
+  let synced = false;
+  let lastsync;
+  let elapsed = 0;
   let checktid;
   let updatetid;
+  let adjusts = [];
+  let cycles = [];
 
   let saved = require('Storage').readJSON(SETTING, true);
   if (saved) {
-    adjust = saved.adjust;
-    cycle = saved.cycle;
+    currentadjust = saved.currentadjust;
+    currentcycle = saved.currentcycle;
+    lastsync = saved.lastsync;
+    adjusts = saved.adjusts;
+    cycles = saved.cycles;
   } 
 
   WIDGETS.widadjuster = { area: 'tr', width: 17, draw: function() {
     g.reset();
-    if (connected || lasttime) {
-      g.setBgColor(g.getBgColor() ^ 0x001F);
-    } else {
-      g.setBgColor(g.getBgColor() ^ 0xF81F);
-    }
+    g.setBgColor(g.getBgColor() ^ 0x001F);
     g.clearRect(this.x, this.y, this.x + 16, this.y + 23);
-    let dailyerror = -86400 * adjust / cycle;
+    let dailyerror = -86400 * currentadjust / currentcycle;
+    if (dailyerror > 9.9) {
+      dailyerror = 9.9;
+    }
     let sign = dailyerror > 0 ? "+" : "";
     let str = sign + dailyerror.toFixed(1);
     g.setFont('4x5').setFontAlign(-1, -1);
-    g.drawString(str.substring(0,3), this.x + 2, this.y + 4);
-    g.drawString(str.substring(3), this.x + 12, this.y + 4);
+    g.drawString(str.substring(0,3), this.x + 2, this.y + 10);
+    g.drawString(str.substring(3), this.x + 12, this.y + 10);
     g.setFontAlign(0, 0);
-    g.drawString(parseInt(cycle / 60), this.x + 9, this.y + 16);
+    g.drawString(cycles.length, this.x + 9, this.y + 4);
+    g.drawString(parseInt(currentcycle / 60) + 'm', this.x + 9, this.y + 19);
   }};
 
   const check = () => {
     let currenttime = getTime();
 
-    if (connected) {
-      if (lasttime) {
-        elapsed += 60 - parseInt(elapsed / cycle) * adjust;
-        if (elapsed < 3600) {
-          return;
+    if (synced) {
+      if (lastsync) {
+        elapsed += 60 - parseInt(elapsed / currentcycle) * currentadjust;
+        if (elapsed >= 3600) {
+          let timediff = currenttime - lastsync - elapsed;
+          let adjust = (timediff > 0) ? 0.125 : -0.125;
+          let count = timediff / adjust;
+          let cycle = parseInt(elapsed / count);
+          if (cycle < 18) {
+            cycle = 18;
+          }
+          adjusts.push(adjust);
+          if (adjusts.length > 10) {
+            adjusts.shift();
+          }
+          if (adjusts.reduce((a, b) => { return a + b; }) >= 0) { 
+            currentadjust = 0.125;
+          } else {
+            currentadjust = -0.125;
+          }
+          cycles.push(cycle);
+          if (cycles.length > 10) {
+            cycles.shift();
+          }
+          let target = cycles.filter((value, index) => { return adjusts[index] == currentadjust; }).sort();
+          if (target.length > 0) {
+            if (target.length > 5) {
+              target.shift();
+              target.pop();
+            }
+            let sum = target.reduce((a, b) => { return a + b; });
+            currentcycle = sum / target.length;
+          } else {
+            currentcycle = cycle;
+          }
         }
-        let timediff = currenttime - lasttime - elapsed;
-        adjust = (timediff > 0) ? 0.125 : -0.125;
-        let count = timediff / adjust;
-        cycle = parseInt(elapsed / count);
       }
       elapsed = 0;
-      lasttime = getTime();
-      connected = false;
+      lastsync = getTime();
+      synced = false;
 
       WIDGETS.widadjuster.draw();
 
       require('Storage').writeJSON(SETTING, {
-        adjust: adjust,
-        cycle: cycle,
+        currentadjust: currentadjust,
+        currentcycle: currentcycle,
+        lastsync: lastsync,
+        adjusts: adjusts,
+        cycles: cycles,
       });
     } else {
-      elapsed = currenttime - lasttime;
+      elapsed = currenttime - lastsync;
     }
     runcheck();
   }
@@ -73,7 +107,7 @@
   }
 
   const update = () => {
-    setTime(getTime() + adjust);
+    setTime(getTime() + currentadjust);
     runupdate();
   }
 
@@ -81,16 +115,17 @@
     updatetid = setTimeout(() => {
       updatetid = undefined;
       update();
-    }, cycle * 1000);
+    }, currentcycle * 1000);
   }
 
   NRF.on('connect', () => {
-    connected = true;
+    synced = true;
     if (updatetid) {
       clearTimeout(updatetid);
       updatetid = undefined;
     }
     if (!checktid) {
+      WIDGETS.widadjuster.draw();
       runcheck();
     }
   });
