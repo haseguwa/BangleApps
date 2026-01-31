@@ -25,6 +25,9 @@
   WIDGETS.widadjuster = { area: 'tr', width: 17, draw: function() {
     g.reset();
     g.setBgColor(g.getBgColor() ^ 0x001F);
+    if (synced) {
+      g.drawRect(this.x, this.y, this.x + 16, this.y + 23);
+    }
     g.clearRect(this.x, this.y, this.x + 16, this.y + 23);
     let dailyerror = -86400 * currentadjust / currentcycle;
     if (dailyerror > 9.9) {
@@ -58,7 +61,7 @@
           if (adjusts.length > 10) {
             adjusts.shift();
           }
-          if (adjusts.reduce((a, b) => { return a + b; }) >= 0) { 
+          if (adjusts.reduce((a, b) => { return a + b; }) > 0) { 
             currentadjust = 0.125;
           } else {
             currentadjust = -0.125;
@@ -67,9 +70,10 @@
           if (cycles.length > 10) {
             cycles.shift();
           }
-          let target = cycles.filter((value, index) => { return adjusts[index] == currentadjust; }).sort();
+          let target = cycles.filter((value, index) => { return adjusts[index] == currentadjust; });
           if (target.length > 0) {
             if (target.length > 5) {
+              target.sort();
               target.shift();
               target.pop();
             }

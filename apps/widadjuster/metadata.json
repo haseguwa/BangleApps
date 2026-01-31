@@ -1,7 +1,7 @@
 {
   "id": "widadjuster",
   "name": "Automatic Time Adjust Widget",
-  "version": "0.02",
+  "version": "0.03",
   "description": "Automatically adjust the time of Bangle watch.\nThis widget expects when the Bangle watch connected to the host computer, the time is corrected.\nThen this widget calculates the difference of the watch time and the correct time and automatically adjust the difference.",
   "icon": "widget.png",
   "type": "widget",
