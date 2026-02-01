@@ -128,6 +128,13 @@
       clearTimeout(updatetid);
       updatetid = undefined;
     }
+    require('Storage').writeJSON(SETTING, {
+      currentadjust: currentadjust,
+      currentcycle: currentcycle,
+      lastsync: getTime();
+      adjusts: adjusts,
+      cycles: cycles,
+    });
     WIDGETS.widadjuster.draw();
   });
 
