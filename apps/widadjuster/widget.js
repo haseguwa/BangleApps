@@ -20,7 +20,9 @@
     lastsync = saved.lastsync;
     adjusts = saved.adjusts;
     cycles = saved.cycles;
-  } 
+  } else {
+    lastsync = getTime();
+  }
 
   WIDGETS.widadjuster = { area: 'tr', width: 17, draw: function() {
     g.reset();
@@ -47,41 +49,39 @@
     let currenttime = getTime();
 
     if (synced) {
-      if (lastsync) {
-        elapsed += 60 - parseInt(elapsed / currentcycle) * currentadjust;
-        if (elapsed >= 3600) {
-          let timediff = currenttime - lastsync - elapsed;
-          let adjust = (timediff > 0) ? 0.125 : -0.125;
-          let count = timediff / adjust;
-          let cycle = parseInt(elapsed / count);
-          if (cycle < 18) {
-            cycle = 18;
+      elapsed += 60 - parseInt(elapsed / currentcycle) * currentadjust;
+      if (elapsed >= 3600) {
+        let timediff = currenttime - lastsync - elapsed;
+        let adjust = (timediff > 0) ? 0.125 : -0.125;
+        let count = timediff / adjust;
+        let cycle = parseInt(elapsed / count);
+        if (cycle < 18) {
+          cycle = 18;
+        }
+        adjusts.push(adjust);
+        if (adjusts.length > 10) {
+          adjusts.shift();
+        }
+        if (adjusts.reduce((a, b) => { return a + b; }) > 0) { 
+          currentadjust = 0.125;
+        } else {
+          currentadjust = -0.125;
+        }
+        cycles.push(cycle);
+        if (cycles.length > 10) {
+          cycles.shift();
+        }
+        let target = cycles.filter((value, index) => { return adjusts[index] == currentadjust; });
+        if (target.length > 0) {
+          if (target.length > 5) {
+            target.sort();
+            target.shift();
+            target.pop();
           }
-          adjusts.push(adjust);
-          if (adjusts.length > 10) {
-            adjusts.shift();
-          }
-          if (adjusts.reduce((a, b) => { return a + b; }) > 0) { 
-            currentadjust = 0.125;
-          } else {
-            currentadjust = -0.125;
-          }
-          cycles.push(cycle);
-          if (cycles.length > 10) {
-            cycles.shift();
-          }
-          let target = cycles.filter((value, index) => { return adjusts[index] == currentadjust; });
-          if (target.length > 0) {
-            if (target.length > 5) {
-              target.sort();
-              target.shift();
-              target.pop();
-            }
-            let sum = target.reduce((a, b) => { return a + b; });
-            currentcycle = sum / target.length;
-          } else {
-            currentcycle = cycle;
-          }
+          let sum = target.reduce((a, b) => { return a + b; });
+          currentcycle = sum / target.length;
+        } else {
+          currentcycle = cycle;
         }
       }
       elapsed = 0;
@@ -128,12 +128,10 @@
       clearTimeout(updatetid);
       updatetid = undefined;
     }
-    if (!checktid) {
-      WIDGETS.widadjuster.draw();
-      runcheck();
-    }
+    WIDGETS.widadjuster.draw();
   });
 
   runupdate();
+  runcheck();
 
 })();
