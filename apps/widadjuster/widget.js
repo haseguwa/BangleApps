@@ -131,7 +131,7 @@
     require('Storage').writeJSON(SETTING, {
       currentadjust: currentadjust,
       currentcycle: currentcycle,
-      lastsync: getTime();
+      lastsync: getTime(),
       adjusts: adjusts,
       cycles: cycles,
     });
