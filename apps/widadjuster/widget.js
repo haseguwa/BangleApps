@@ -75,7 +75,7 @@
         if (adjusts.length > 10) {
           adjusts.shift();
         }
-        if (adjusts.reduce((a, b) => { return a + b; }) > 0) { 
+        if (adjusts.reduce((a, b) => a + b, 0) > 0) { 
           currentadjust = 0.125;
         } else {
           currentadjust = -0.125;
