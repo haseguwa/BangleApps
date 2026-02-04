@@ -35,6 +35,9 @@
     if (dailyerror > 9.9) {
       dailyerror = 9.9;
     }
+    if (dailyerror < -9.9) {
+      dailyerror = -9.9;
+    }
     let sign = dailyerror > 0 ? "+" : "";
     let str = sign + dailyerror.toFixed(1);
     g.setFont('4x5').setFontAlign(-1, -1);
@@ -52,7 +55,7 @@
         unit = 'd';
       }
     }
-    g.drawString(parseInt(time) + unit, this.x + 9, this.y + 19);
+    g.drawString(parseInt(value) + unit, this.x + 9, this.y + 19);
   }};
 
   const calc = () => {
