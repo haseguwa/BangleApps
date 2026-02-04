@@ -4,7 +4,7 @@
   const SETTING = 'widadjuster.settings.json';
 
   let currentadjust = -0.125;
-  let currentcycle = 2160;
+  let currentcycle = 86400;
   let synced = false;
   let lastsync;
   let elapsed = 0;
@@ -27,10 +27,10 @@
   WIDGETS.widadjuster = { area: 'tr', width: 17, draw: function() {
     g.reset();
     g.setBgColor(g.getBgColor() ^ 0x001F);
+    g.clearRect(this.x, this.y, this.x + 16, this.y + 23);
     if (synced) {
       g.drawRect(this.x, this.y, this.x + 16, this.y + 23);
     }
-    g.clearRect(this.x, this.y, this.x + 16, this.y + 23);
     let dailyerror = -86400 * currentadjust / currentcycle;
     if (dailyerror > 9.9) {
       dailyerror = 9.9;
