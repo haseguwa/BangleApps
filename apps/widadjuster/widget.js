@@ -97,8 +97,6 @@
           currentcycle = cycle;
         }
       }
-      WIDGETS.widadjuster.draw();
-
       require('Storage').writeJSON(SETTING, {
         currentadjust: currentadjust,
         currentcycle: currentcycle,
@@ -110,6 +108,8 @@
       elapsed = 0;
       lastsync = getTime();
       synced = false;
+      WIDGETS.widadjuster.draw();
+
       runupdate();
     } else {
       elapsed = currenttime - lastsync;
