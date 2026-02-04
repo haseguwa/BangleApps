@@ -4,11 +4,11 @@
   const SETTING = 'widadjuster.settings.json';
 
   let currentadjust = -0.125;
-  let currentcycle = 86400;
+  let currentcycle = 2160;
   let synced = false;
   let lastsync;
   let elapsed = 0;
-  let checktid;
+  let calctid;
   let updatetid;
   let adjusts = [];
   let cycles = [];
@@ -42,10 +42,20 @@
     g.drawString(str.substring(3), this.x + 12, this.y + 10);
     g.setFontAlign(0, 0);
     g.drawString(cycles.length, this.x + 9, this.y + 4);
-    g.drawString(parseInt(currentcycle / 60) + 'm', this.x + 9, this.y + 19);
+    let value = currentcycle / 60;
+    let unit = 'm';
+    if (value >= 100) {
+      value = value / 60;
+      unit = 'h';
+      if (value >= 100) {
+        value = value / 24;
+        unit = 'd';
+      }
+    }
+    g.drawString(parseInt(time) + unit, this.x + 9, this.y + 19);
   }};
 
-  const check = () => {
+  const calc = () => {
     let currenttime = getTime();
 
     if (synced) {
@@ -84,10 +94,6 @@
           currentcycle = cycle;
         }
       }
-      elapsed = 0;
-      lastsync = getTime();
-      synced = false;
-
       WIDGETS.widadjuster.draw();
 
       require('Storage').writeJSON(SETTING, {
@@ -97,16 +103,21 @@
         adjusts: adjusts,
         cycles: cycles,
       });
+
+      elapsed = 0;
+      lastsync = getTime();
+      synced = false;
+      runupdate();
     } else {
       elapsed = currenttime - lastsync;
     }
-    runcheck();
+    runcalc();
   }
 
-  const runcheck = () => {
-    checktid = setTimeout(() => {
-      checktid = undefined;
-      check();
+  const runcalc = () => {
+    calctid = setTimeout(() => {
+      calctid = undefined;
+      calc();
     }, 60000 - Date.now() % 60000);
   }
 
@@ -123,22 +134,24 @@
   }
 
   NRF.on('connect', () => {
-    synced = true;
-    if (updatetid) {
-      clearTimeout(updatetid);
-      updatetid = undefined;
+    if (!synced) {
+      synced = true;
+      if (updatetid) {
+        clearTimeout(updatetid);
+        updatetid = undefined;
+      }
+      require('Storage').writeJSON(SETTING, {
+        currentadjust: currentadjust,
+        currentcycle: currentcycle,
+        lastsync: getTime(),
+        adjusts: adjusts,
+        cycles: cycles,
+      });
+      WIDGETS.widadjuster.draw();
     }
-    require('Storage').writeJSON(SETTING, {
-      currentadjust: currentadjust,
-      currentcycle: currentcycle,
-      lastsync: getTime(),
-      adjusts: adjusts,
-      cycles: cycles,
-    });
-    WIDGETS.widadjuster.draw();
   });
 
   runupdate();
-  runcheck();
+  runcalc();
 
 })();
