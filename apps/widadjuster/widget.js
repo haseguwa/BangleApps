@@ -6,7 +6,7 @@
   let currentadjust = -0.125;
   let currentcycle = 2160;
   let synced = false;
-  let lastsync;
+  let lastsync getTime();
   let elapsed = 0;
   let calctid;
   let updatetid;
@@ -20,8 +20,6 @@
     lastsync = saved.lastsync;
     adjusts = saved.adjusts;
     cycles = saved.cycles;
-  } else {
-    lastsync = getTime();
   }
 
   WIDGETS.widadjuster = { area: 'tr', width: 17, draw: function() {
@@ -86,7 +84,7 @@
         }
         let target = cycles.filter((value, index) => { return adjusts[index] == currentadjust; });
         if (target.length > 0) {
-          if (target.length > 5) {
+          if (target.length > 7) {
             target.sort();
             target.shift();
             target.pop();
@@ -97,6 +95,10 @@
           currentcycle = cycle;
         }
       }
+      elapsed = 0;
+      lastsync = currenttime;
+      synced = false;
+
       require('Storage').writeJSON(SETTING, {
         currentadjust: currentadjust,
         currentcycle: currentcycle,
@@ -105,9 +107,6 @@
         cycles: cycles,
       });
 
-      elapsed = 0;
-      lastsync = getTime();
-      synced = false;
       WIDGETS.widadjuster.draw();
 
       runupdate();
