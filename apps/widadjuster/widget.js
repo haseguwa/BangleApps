@@ -6,7 +6,7 @@
   let currentadjust = -0.125;
   let currentcycle = 2160;
   let synced = false;
-  let lastsync getTime();
+  let lastsync = getTime();
   let elapsed = 0;
   let calctid;
   let updatetid;
@@ -89,7 +89,7 @@
             target.shift();
             target.pop();
           }
-          let sum = target.reduce((a, b) => { return a + b; });
+          let sum = target.reduce((a, b) => a + b, 0);
           currentcycle = sum / target.length;
         } else {
           currentcycle = cycle;
